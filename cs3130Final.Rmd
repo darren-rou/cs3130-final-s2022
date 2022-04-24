@@ -1,0 +1,116 @@
+---
+title: "Some Title"
+date: "April 29, 2022"
+author: "Tom Coe, Joey Brignone, Darren Rou"
+output:
+  html_document:
+    number_sections: true
+  pdf_document:
+    number_sections: true
+---
+
+# Introduction idk write something here later
+
+In this study, we consider fans' reaction to scoring in Real Salt Lake (RSL) soccer games and Utah Jazz basketball games. Will need to add more here later
+
+## Movtivation
+
+We consider data from the 2020-2021 NBA season playoffs. More specifically, we consider the total points scored by each team in a game. This data about total points is available [from NBA.com](https://www.nba.com/stats/teams/boxscores/?Season=2020-21&SeasonType=Playoffs). We put this data into a `.csv` file, and using the `head()` function, we can see what it looks like:
+
+```{r}
+nbaPreliminaryData = read.csv("nbaPreliminaryData.csv") # data from nba.com
+head(nbaPreliminaryData)
+```
+
+As we can see, the first two rows correspond to the same game; data about total points scored by each team is available for both teams. We are most interested in the `PTS` column.
+
+Mathematically, let $X$ be the total number of points scored by a team in an NBA game. (That is, our population consists of all points totals for some team in some NBA game). Our sample (shown earlier) represents only a small subset of the population, but it is sufficient for the motivation for this study. The following code block does some basic analysis on the data.
+
+```{r}
+nbaScores = nbaPreliminaryData$PTS
+nbaScoresCount = length(nbaScores) # sample size
+nbaScoresMean = mean(nbaScores) # sample mean
+nbaScoresSd = sd(nbaScores) # sample standard deviation
+summary(nbaScores)
+
+hist(nbaScores,
+     main="Histogram of total points (NBA)",
+     xlab="Total points scored by a team in a game"
+     )
+```
+
+With this sample size of ${n_X=}$ `r nbaScoresCount`, we find the sample mean to be ${\bar{x}=}$ `r nbaScoresMean` and the sample standard deviation to be ${s_{X}=}$ `r nbaScoresSd`. As shown by the previous histogram, the data is approximately normal, and using a t-distribution for analysis is suitable:
+
+```{r}
+nbaScoresTtest = t.test(nbaScores)
+nbaScoresTtest
+```
+
+The previous t-test gives a 95% confidence interval of (`r nbaScoresTtest$conf.int[1]`, `r nbaScoresTtest$conf.int[2]`). In terms of NBA scores, this interval is quite small. Our sample suggests the mean points scored by a team in an NBA points in this interval with 95% confidence.
+
+Note that the data we obtained from nba.com is biased. We only sampled from the 2020-2021 season, and we only sampled from playoff games. But for our purposes, this biased sample should be sufficient.
+
+Now, we consider data for the MLS. Data for the MLS is available [from kaggle.com](https://www.kaggle.com/datasets/josephvm/major-league-soccer-dataset?resource=download&select=matches.csv). Similar to our NBA analysis, we want to consider the total points scored each team in a game.
+
+```{r}
+mlsPreliminaryData = read.csv("mlsPreliminaryData.csv")
+```
+
+There are too many columns confortablyd display, but we are interested in the `home_score` and `away_score` columns.
+
+Similar to before, let $Y$ be the total number of points scored by a team in an MLS game.
+
+```{r}
+mlsScores1 = mlsPreliminaryData$home_score
+mlsScores2 = mlsPreliminaryData$away_score
+mlsScores = c(mlsScores1, mlsScores2)
+mlsScoresCount = length(mlsScores)
+mlsScoresMean = mean(mlsScores)
+mlsScoresSd = sd(mlsScores)
+
+# interestingly, the scores go from 0 to 8. We can make nice breaks for the histogram
+myBreaks = c(-1, 0, 1, 2, 3, 4, 5, 6, 7, 8)
+hist(mlsScores,
+     main="Histogram of total points (MLS)",
+     xlab="Total points scored by a team in a game",
+     breaks=myBreaks
+     )
+```
+
+With our sample size of ${n_Y=}$ `r mlsScoresCount`, we find the sample mean to be ${\bar{y}=}$ `r mlsScoresMean`, and we find the sample standard deviation to be ${s_{Y}=}$ `r mlsScoresSd`. Compared to the sample mean, the sample standard deviation is quite large. The previous histograms shows that MLS scores are not normally distributed. The data seemed to be skewed to the left. We can still use a t-test to find a confience interval since our sample size was large:
+
+```{r}
+mlsScoresTtest = t.test(mlsScores)
+mlsScoresTtest
+```
+
+From the t-test, we find a 95% confidence interval of (`r mlsScoresTtest$conf.int[1]`, `r mlsScoresTtest$conf.int[2]`).
+
+As with the NBA case, our data for MLS scores may be biased, but it should be sufficient for our purposes. We may do a two-variable t-test to compare NBA scores to MLS scores:
+```{r}
+nbaMlsTtest = t.test(nbaScores, mlsScores)
+nbaMlsTtest
+```
+
+The previous t-test suggests that NBA games usually have much higher scores than MLS games. If this is the case, then viewers of sports games may feel like points in MLS games are harder to obtain. If points in MLS games are harder obtain, then we are led to the question *"do MLS fans cheer harder than NBA fans?"* It may be hard to quantify the idea of "harder," so instead we consider *duration*. To narrow our scope, and to keep things interesting to Utahs, we consider RSL and Utah Jazz instead of the entire MLS and entire NBA, respectively. This leads us to our question for this study:
+
+**Do RSL fans cheer longer than Jazz fans?**
+
+# Data Collection
+
+To collect data, we watch RSL and Jazz games and observe the crowd when there is an instance of scoring. Then, we time the duration of the crowd's cheering after the instance of scoring. 
+
+# Analysis
+
+## RSL Data
+
+## Jazz Data
+
+## Comparison of RSL and Jazz Data
+
+# Limitations
+
+# Conclusion
+
+
+
