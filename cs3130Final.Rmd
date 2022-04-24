@@ -96,19 +96,13 @@ The previous t-test suggests that NBA games usually have much higher scores than
 
 **Do RSL fans cheer longer than Jazz fans?**
 
-# Data Collection
+# Data Discovery
 
 To collect data, we watch RSL and Jazz games and observe the crowd when there is an instance of scoring. Then, we time the duration of the crowd's cheering after the instance of scoring. 
 
+# Methodology
+
 # Analysis
-
-## RSL Data
-
-## Jazz Data
-
-## Comparison of RSL and Jazz Data
-
-# Limitations
 
 # Conclusion
 
