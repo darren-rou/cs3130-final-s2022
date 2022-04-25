@@ -41,6 +41,13 @@ hist(nbaScores,
      main="Histogram of total points (NBA)",
      xlab="Total points scored by a team in a game"
      )
+
+nbaScoresRange <- 80:150
+nbaScoresNormal <- dnorm(nbaScoresRange,mean=nbaScoresMean,sd=nbaScoresSd)
+plot(nbaScoresRange,nbaScoresNormal,main="Histogram of total points (NBA) and Normal Curve",
+     xlab="Total points scored by a team in a game",ylab = 'Density')
+hist(nbaScores,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
+
 ```
 
 With this sample size of ${n_X=}$ `r nbaScoresCount`, we find the sample mean to be ${\bar{x}=}$ `r nbaScoresMean` and the sample standard deviation to be ${s_{X}=}$ `r nbaScoresSd`. As shown by the previous histogram, the data is approximately normal, and using a t-distribution for analysis is suitable:
