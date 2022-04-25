@@ -9,11 +9,17 @@ output:
     number_sections: true
 ---
 
-# Introduction idk write something here later
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+```
 
-dlsdjf;laskjdf
-lsaddfjlkjsdsf
-sdlkj
+# Introduction
+
+In this day and age almost everything has turned into a competition, some of the most competitive being professional sports. Sports are at the core of our competitive nature and are captivating to watch. Fans become so involved in the victories and losses of their respective favorite team that they start using pronouns such as 'we' when referring to the teams recent achievements. Logically, being a dedicated fan is a competition in itself. It's not easy showing up to games and cheering for hours on end. Any dedicated fan will know the pains of waking up the morning after a big game with a sore throat and trouble speaking. The question remains, how are we as fans to know if we are the best fans? Well this study aims to answer that very question. In this study we will examine the fans of Utah's professional sports teams RSL and Utah Jazz. 
+
+We all know that more points are scored in basketball games than in soccer games, but how does this affect the crowds reaction? In this study we first examine the number of points one MLS goal is worth in the NBA. Next, we examine how long the crowd cheers when the Utah Jazz scores a point versus when RSL scores a point. 
 
 In this study, we consider fans' reaction to scoring in Real Salt Lake (RSL) soccer games and Utah Jazz basketball games. Will need to add more here later
 
