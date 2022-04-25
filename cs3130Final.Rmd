@@ -73,12 +73,17 @@ mlsScoresMean = mean(mlsScores)
 mlsScoresSd = sd(mlsScores)
 
 # interestingly, the scores go from 0 to 8. We can make nice breaks for the histogram
-myBreaks = c(-1, 0, 1, 2, 3, 4, 5, 6, 7, 8)
+myBreaks = c(-.5:8.5)
 hist(mlsScores,
      main="Histogram of total points (MLS)",
      xlab="Total points scored by a team in a game",
      breaks=myBreaks
      )
+mlsRange <- -.5:8
+mlsNormal <- dnorm(mlsRange,mean=mlsScoresMean,sd=mlsScoresSd)
+plot(mlsRange,mlsNormal,main="Histogram of total points (MLS) and Normal Curve",
+     xlab="Total points scored by a team in a game",ylab = 'Density')
+hist(mlsScores,breaks=-.5:8.5,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
 ```
 
 With our sample size of ${n_Y=}$ `r mlsScoresCount`, we find the sample mean to be ${\bar{y}=}$ `r mlsScoresMean`, and we find the sample standard deviation to be ${s_{Y}=}$ `r mlsScoresSd`. Compared to the sample mean, the sample standard deviation is quite large. The previous histograms shows that MLS scores are not normally distributed. The data seemed to be skewed to the left. We can still use a t-test to find a confience interval since our sample size was large:
