@@ -84,7 +84,7 @@ Now, we consider data for the MLS. Data for the MLS is available [from kaggle.co
 mlsPreliminaryData = read.csv("mlsPreliminaryData.csv")
 ```
 
-There are too many columns confortablyd display, but we are interested in the `home_score` and `away_score` columns.
+There are too many columns comfortably display, but we are interested in the `home_score` and `away_score` columns.
 
 Similar to before, let $Y$ be the total number of points scored by a team in an MLS game.
 
@@ -103,9 +103,9 @@ hist(mlsScores,
      xlab="Total points scored by a team in a game",
      breaks=myBreaks
      )
-mlsRange <- -.5:8
-mlsNormal <- dnorm(mlsRange,mean=mlsScoresMean,sd=mlsScoresSd)
-plot(mlsRange,mlsNormal,main="Histogram of total points (MLS) and Normal Curve",
+mlsScoreRange <- -.5:8
+mlsScoreNormal <- dnorm(mlsScoreRange,mean=mlsScoresMean,sd=mlsScoresSd)
+plot(mlsScoreRange,mlsScoreNormal,main="Histogram of total points (MLS) and Normal Curve",
      xlab="Total points scored by a team in a game",ylab = 'Density')
 hist(mlsScores,breaks=-.5:8.5,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
 ```
