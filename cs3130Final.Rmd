@@ -23,6 +23,10 @@ In this study we will examine the fans of Utah's professional sports teams RSL a
 
 # Data Discovery
 
+## Scoring Data
+
+## Cheering Data
+
 To collect data, we watched RSL and Jazz games and observed the crowd when there was an instance of scoring. Then, using a stop watch we timed the duration of the crowd's cheering. For the basketball games this was simple as there are no cuts in the video feed, but for soccer game this was a little harder. Since there is a delay in game play after a goal is scored in soccer the broadcasting network cuts away from the live feed and shows instant replays. These replays, however, still have live audio from the commentators and the crowd can still be heard. Thus, to gather data for the celebration time we focused on listening to the crowd during the replays and did our best to estimate when the crowd had stopped cheering. The act of timing the crowd's reaction introduces error in itself, but the added difficulty of not having a single continuous video feed made accurate data collection even more difficult. 
 
 
