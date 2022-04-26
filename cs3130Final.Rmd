@@ -32,6 +32,10 @@ To collect data, we watched RSL and Jazz games and observed the crowd when there
 
 # Methodology
 
+After data collection, we were given many measurements from which to choose from. The first important population sample we wish to evaluate will be the scores per game. In order to adequately answer our question of how much one point in soccer is compared to one point in basketball, we will need to take the scoring data collected in the previous section and compare the most important samples within our two files. The clearest way to show off our findings will be with a histogram with a normal curve of the points (PTS) column, followed by a t-test of the same. Naturally, this process will be done with the Jazz and will be repeated with RSL. Since we are fairly confident in our data, yet we recognize possible biases that are present, we will be using a confidence interval of 95%. Through this t-test of 95% confidence, we can find a range for the population mean for the scores per game of RSL and the Jazz.
+
+Next, we wish to answer which fans are better. As mentioned earlier, counting the amount of fans with sore throats after each game would not be effective nor sanitary to say the least. However, by using the duration of cheering after each point, we believe that this method equally measures the fans' passion for the team. From our data sets, we will take the sample of cheer time per point, plot a histogram and normal curve, and analyze our results. This should prepare us to run another t-test of this sample, to find a range wherein lies the population mean. For consistency, we will use the 95% confidence interval from before. Once both t-tests are run for both cheer time data sets, we may start to draw conclusions from our results.
+
 # Analysis
 
 ## One Point In Soccer Is Worth X Points In Baseketball
@@ -130,6 +134,7 @@ The previous t-test suggests that NBA games usually have much higher scores than
 **Do RSL fans cheer longer than Jazz fans?**
 
 ## Who Are the Better Fans
+
 
 
 # Conclusion
