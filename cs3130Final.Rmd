@@ -40,16 +40,16 @@ Next, we wish to answer which fans are better. As mentioned earlier, counting th
 
 ## One Point In Soccer Is Worth X Points In Baseketball
 
-We consider data from the 2020-2021 NBA season playoffs. More specifically, we consider the total points scored by each team in a game. This data about total points is available [from NBA.com](https://www.nba.com/stats/teams/boxscores/?Season=2020-21&SeasonType=Playoffs). We put this data into a `.csv` file, and using the `head()` function, we can see what it looks like:
+We consider scoring data for the Utah Jazz during the 2020-2021 and 2019-2020 regular season. More specifically, we consider the total points scored by the Jazz each game. This data about total points is available [from NBA.com](https://www.nba.com/stats/teams/boxscores/?Season=2020-21&SeasonType=Regular%20Season&CF=TEAM_NAME*E*Utah%20Jazz). We put this data into a `.csv` file, and using the `head()` function, we can see what it looks like:
 
 ```{r}
-nbaPreliminaryData = read.csv("nbaPreliminaryData.csv") # data from nba.com
+nbaPreliminaryData = read.csv("jazzScores.csv") # data from nba.com
 head(nbaPreliminaryData)
 ```
 
-As we can see, the first two rows correspond to the same game; data about total points scored by each team is available for both teams. We are most interested in the `PTS` column.
+As we can see, the `PTS` column corresponds to total points scored by the Jazz during a game.
 
-Mathematically, let $X$ be the total number of points scored by a team in an NBA game. (That is, our population consists of all points totals for some team in some NBA game). Our sample (shown earlier) represents only a small subset of the population, but it is sufficient for the motivation for this study. The following code block does some basic analysis on the data.
+Mathematically, let $X$ be the total number of points scored by the Jazz in an NBA game. Our sample (shown earlier) represents only a small subset of the population, but it is sufficient for the motivation for this study. The following code block does some basic analysis on the data.
 
 ```{r}
 nbaScores = nbaPreliminaryData$PTS
@@ -60,7 +60,7 @@ summary(nbaScores)
 
 hist(nbaScores,
      main="Histogram of total points (NBA)",
-     xlab="Total points scored by a team in a game"
+     xlab="Total points scored by a team in a game",
      )
 
 nbaScoresRange <- 80:150
