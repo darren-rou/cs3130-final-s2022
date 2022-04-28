@@ -1,51 +1,51 @@
 Opposing team,date,Game Time,Point number,Celebration Time,location
-LA Lakers,2021,10:25:00,24,6.98,home
-LA Lakers,2021,6:54:00,13,7.02,home
-LA Lakers,2021,22:47:00,60,10,home
-LA Lakers,2021,11:36:00,72,7.63,home
-LA Lakers,2021,44:13:00,105,10.65,home
-Milwaukee Bucks,2021,4:52:00,15,6.62,home
-Milwaukee Bucks,2021,10:10:00,30,7.34,home
-Milwaukee Bucks,2021,23:08:00,63,6.63,home
-Milwaukee Bucks,2021,26:06:00,71,4.35,home
-Milwaukee Bucks,2021,31:57:00,86,4.05,home
-Detriot Pistons,2021,9:51:00,32,4.86,away
-Detriot Pistons,2021,15:48:00,46,4.42,away
-Detriot Pistons,2021,23:27:00,57,3.09,away
-Detriot Pistons,2021,39:01:00,80,4.24,away
-Detriot Pistons,2021,43:30:00,90,4.72,away
-NY Knicks,2022,8:51:00,20,4.94,away
-NY Knicks,2022,12:20:00,28,3,away
-NY Knicks,2022,14:29:00,35,4.12,away
-NY Knicks,2022,32:50:00,77,3.6,away
-NY Knicks,2022,46:11:00,105,4.79,away
-LA Lakers,2016,2:15:00,4,2.5,away
-LA Lakers,2016,7:59:00,9,2.4,away
-LA Lakers,2016,21:01:00,48,2.57,away
-LA Lakers,2016,42:03:00,87,3.07,away
-LA Lakers,2016,36:24:00,77,1.82,away
-Mavericks,2022,23:52:00,54,9.09,home
-Mavericks,2022,6:26:00,7,5.45,home
-Mavericks,2022,29:47:00,65,10.41,home
-Mavericks,2022,33:34:00,74,8.99,home
-Mavericks,2022,17:58:00,38,6.39,home
-LA Lakers,2022,0:33:00,2,4.38,home
-LA Lakers,2022,9:23:00,28,4.1,home
-LA Lakers,2022,17:05:00,49,4.19,home
-LA Lakers,2022,29:45:00,78,6.14,home
-LA Lakers,2022,45:47:00,122,7.21,home
-Mavericks,2022,5:14:00,12,2.67,away
-Mavericks,2022,18:01:00,43,3.15,away
-Mavericks,2022,27:50:00,65,3.03,away
-Mavericks,2022,39:25:00,85,2.37,away
-Mavericks,2022,44:55:00,92,3.03,away
-Thunder,2022,6:32:00,20,2.7,away
-Thunder,2022,14:30:00,43,2.42,away
-Thunder,2022,27:31:00,68,2.78,away
-Thunder,2022,34:48:00,88,2.53,away
-Thunder,2022,43:44:00,105,3.03,away
-Trail Blazers,2022,6:25:00,14,5.29,home
-Trail Blazers,2022,16:07:00,37,5.89,home
-Trail Blazers,2022,21:16:00,54,6.24,home
-Trail Blazers,2022,31:13:00,85,10.29,home
-Trail Blazers,2022,43:54:00,113,8.21,home
+LA Lakers,2021,10:25,24,6.98,home
+LA Lakers,2021,6:54,13,7.02,home
+LA Lakers,2021,22:47,60,10,home
+LA Lakers,2021,11:36,72,7.63,home
+LA Lakers,2021,20:13,105,10.65,home
+Milwaukee Bucks,2021,4:52,15,6.62,home
+Milwaukee Bucks,2021,10:10,30,7.34,home
+Milwaukee Bucks,2021,23:08,63,6.63,home
+Milwaukee Bucks,2021,2:06,71,4.35,home
+Milwaukee Bucks,2021,7:57,86,4.05,home
+Detriot Pistons,2021,9:51,32,4.86,away
+Detriot Pistons,2021,15:48,46,4.42,away
+Detriot Pistons,2021,23:27,57,3.09,away
+Detriot Pistons,2021,15:01,80,4.24,away
+Detriot Pistons,2021,19:30,90,4.72,away
+NY Knicks,2022,8:51,20,4.94,away
+NY Knicks,2022,12:20,28,3,away
+NY Knicks,2022,14:29,35,4.12,away
+NY Knicks,2022,8:50,77,3.6,away
+NY Knicks,2022,22:11,105,4.79,away
+LA Lakers,2016,2:15,4,2.5,away
+LA Lakers,2016,7:59,9,2.4,away
+LA Lakers,2016,21:01,48,2.57,away
+LA Lakers,2016,18:03,87,3.07,away
+LA Lakers,2016,12:24,77,1.82,away
+Mavericks,2022,23:52,54,9.09,home
+Mavericks,2022,6:26,7,5.45,home
+Mavericks,2022,5:47,65,10.41,home
+Mavericks,2022,9:34,74,8.99,home
+Mavericks,2022,17:58,38,6.39,home
+LA Lakers,2022,0:33,2,4.38,home
+LA Lakers,2022,9:23,28,4.1,home
+LA Lakers,2022,17:05,49,4.19,home
+LA Lakers,2022,5:45,78,6.14,home
+LA Lakers,2022,21:47,122,7.21,home
+Mavericks,2022,5:14,12,2.67,away
+Mavericks,2022,18:01,43,3.15,away
+Mavericks,2022,3:50,65,3.03,away
+Mavericks,2022,15:25,85,2.37,away
+Mavericks,2022,20:55,92,3.03,away
+Thunder,2022,6:32,20,2.7,away
+Thunder,2022,14:30,43,2.42,away
+Thunder,2022,3:31,68,2.78,away
+Thunder,2022,10:48,88,2.53,away
+Thunder,2022,19:44,105,3.03,away
+Trail Blazers,2022,6:25,14,5.29,home
+Trail Blazers,2022,16:07,37,5.89,home
+Trail Blazers,2022,21:16,54,6.24,home
+Trail Blazers,2022,7:13,85,10.29,home
+Trail Blazers,2022,19:54,113,8.21,home

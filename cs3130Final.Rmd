@@ -13,6 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
+library(kableExtra)
 ```
 
 # Introduction
@@ -46,7 +47,9 @@ We consider scoring data for the Utah Jazz during the 2020-2021 and 2019-2020 re
 
 ```{r}
 nbaPreliminaryData = read.csv("jazzScores.csv") # data from nba.com
-knitr::kable(head(nbaPreliminaryData[,0:6]),col.names=c('Team','Match Up','Game Date','W/L','Min','Points'))
+knitr::kable(head(nbaPreliminaryData[,0:6]),align='c',
+             col.names=c('Team','Match Up','Game Date','W/L','Min','Points')) %>%
+  kable_styling(full_width = F)
 ```
 
 As we can see, the `PTS` column corresponds to total points scored by the Jazz during a game.
@@ -88,7 +91,8 @@ Now, we consider data for the MLS. Data for the MLS is available [from kaggle.co
 
 ```{r}
 mlsPreliminaryData = read.csv("rslScores.csv")
-knitr::kable(head(mlsPreliminaryData),col.names=c('Team','Final Score','Year'))
+knitr::kable(head(mlsPreliminaryData),col.names=c('Team','Final Score','Year'),align='c') %>%
+  kable_styling(full_width = F)
 ```
 
 Above is a table representing the data retrieved from kaggle.com. The column we are interested in for our study's purposes is the final score.
@@ -140,6 +144,9 @@ highRatio <- nbaScoresTtest$conf.int[2]/mlsScoresTtest$conf.int[1]
 Here we have completed these computation and arrived at a ratio of `r lowRatio` for the lower bound and `r highRatio` for the higher bound. This means that one point scored by RSL is at least equivalent to `r lowRatio` Jazz points and at most equivalent to `r highRatio` Jazz points. These values will be crucial in determining if RSL fans truly cheer harder than Jazz fans.
 
 ## Who Are the Better Fans
+
+First we will take the data we collected and compute the mean values for each. Similar to what we did in the previous section for the scoring data.
+
 ```{r}
 # import cheering data
 jazzData = read.csv("jazzFanData.csv")
@@ -147,12 +154,23 @@ rslData = read.csv("rslFanData.csv")
 rslCelebrationTimes = rslData$Celebration.Time
 jazzCelebrationTimes = jazzData$Celebration.Time
 
-celebrationDf <- data.frame(rslCelebrationTimes,jazzCelebrationTimes)
-knitr::kable(head(celebrationDf),col.names=c('RSL Celebration Time', 'Jazz Celebration Time'),align='c')
+knitr::kable(head(jazzData),col.names=c('Opposing Team','Year','Game Time',
+                                        'Point #', 'Celebration  Time','Location'),align='c') %>%
+  kable_styling(full_width = F)
+```
+
+The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is celebration time. 
+
+```{r}
+
+knitr::kable(head(rslData),col.names=c('Opposing Team','Year','Game Time',
+                                       'Point #','Celebration Time','Location'),align = 'c') %>%
+  kable_styling(full_width = F)
+
 ```
 
 
-
+We also kept track of the same details in our RSL data collection as shown above. 
 
 # Conclusion
 
