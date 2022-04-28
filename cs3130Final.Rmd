@@ -169,11 +169,11 @@ jazzCelebreationSd = sd(jazzCelebrationTimes)
 jazzCelebrationBreaks = c(min(jazzCelebrationTimes):max(jazzCelebrationTimes))
 hist(jazzCelebrationTimes,
      main="Histogram of Celebration Time (Jazz)",
-     xlab="Total Time Fans Cheered After a Score")
-jazzCelebrationRange <- c(1:12)
+     xlab="Total Time Fans Cheered After a Score",breaks=6)
+jazzCelebrationRange <- c(0:12)
 jazzCelebrationNormal <- dnorm(jazzCelebrationRange,mean=jazzCelebrationMean,sd=jazzCelebreationSd)
 plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration Time (Jazz) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density')
-hist(jazzCelebrationTimes,breaks=0:14,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
+hist(jazzCelebrationTimes,breaks=6,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
 
 
 ```
