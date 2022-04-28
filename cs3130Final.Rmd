@@ -196,7 +196,7 @@ rslCelebrationMean = mean(rslCelebrationTimes)
 rslCelebreationSd = sd(rslCelebrationTimes)
 
 rslCelebrationBreaks = c(min(rslCelebrationTimes):max(rslCelebrationTimes))
-rslCelebrationRange <- c(13:95)
+rslCelebrationRange <- c(10:100)
 rslCelebrationNormal <- dnorm(rslCelebrationRange,mean=rslCelebrationMean,sd=rslCelebreationSd)
 plot(rslCelebrationRange,rslCelebrationNormal,main="Histogram of Celebration Time (RSL) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density')
 hist(rslCelebrationTimes,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
