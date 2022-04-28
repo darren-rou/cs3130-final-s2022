@@ -45,7 +45,7 @@ Next, we wish to use this information answer which fans are better. As mentioned
 
 We consider scoring data for the Utah Jazz during the 2020-2021 and 2019-2020 regular season. More specifically, we consider the total points scored by the Jazz each game. This data about total points is available [from NBA.com](https://www.nba.com/stats/teams/boxscores/?Season=2020-21&SeasonType=Regular%20Season&CF=TEAM_NAME*E*Utah%20Jazz). We put this data into a `.csv` file, and using the `head()` function, we can create a table to see what it looks like:
 
-```{r}
+```{r echo=F}
 nbaPreliminaryData = read.csv("jazzScores.csv") # data from nba.com
 knitr::kable(head(nbaPreliminaryData[,0:6]),align='c',
              col.names=c('Team','Match Up','Game Date','W/L','Min','Points')) %>%
@@ -56,7 +56,7 @@ As we can see, the `PTS` column corresponds to total points scored by the Jazz d
 
 Mathematically, let $X$ be the total number of points scored by the Jazz in an NBA game. Our sample (shown earlier) represents only a small subset of the population, but it is sufficient for the motivation for this study. The following code block does some basic analysis on the data.
 
-```{r}
+```{r echo=F}
 nbaScores = nbaPreliminaryData$PTS
 nbaScoresCount = length(nbaScores) # sample size
 nbaScoresMean = mean(nbaScores) # sample mean
@@ -73,7 +73,7 @@ hist(nbaScores,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
 
 With this sample size of ${n_X=}$ `r nbaScoresCount`, we find the sample mean to be ${\bar{x}=}$ `r nbaScoresMean` and the sample standard deviation to be ${s_{X}=}$ `r nbaScoresSd`. As shown by the previous histogram, the data is approximately normal, and using a t-distribution for analysis is suitable:
 
-```{r}
+```{r echo=F}
 nbaScoresTtest = t.test(nbaScores)
 nbaScoresTtest
 ```
@@ -84,7 +84,7 @@ Note that the data we obtained from nba.com is biased. We only sampled from the 
 
 Now, we consider data for the MLS. Data for the MLS is available [from kaggle.com](https://www.kaggle.com/datasets/josephvm/major-league-soccer-dataset?resource=download&select=matches.csv). Similar to our NBA analysis, we want to consider the total points scored each team in a game.
 
-```{r}
+```{r echo=F}
 mlsPreliminaryData = read.csv("rslScores.csv")
 knitr::kable(head(mlsPreliminaryData),col.names=c('Team','Final Score','Year'),align='c') %>%
   kable_styling(full_width = F)
@@ -94,7 +94,7 @@ Above is a table representing the data retrieved from kaggle.com. The column we 
 
 Similar to before, let $Y$ be the total number of points scored by a team in an MLS game.
 
-```{r}
+```{r echo=F}
 mlsScores = mlsPreliminaryData$Final.Score
 mlsScoresCount = length(mlsScores)
 mlsScoresMean = mean(mlsScores)
@@ -109,7 +109,7 @@ hist(mlsScores,breaks=-.5:8.5,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
 
 With our sample size of ${n_Y=}$ `r mlsScoresCount`, we find the sample mean to be ${\bar{y}=}$ `r mlsScoresMean`, and we find the sample standard deviation to be ${s_{Y}=}$ `r mlsScoresSd`. Compared to the sample mean, the sample standard deviation is quite large. The previous histograms shows that RSL scores approximately follow a normal distribution. Note that the data seems to be skewed left. We can use a t-test to find a confidence interval:
 
-```{r}
+```{r echo=F}
 mlsScoresTtest = t.test(mlsScores)
 mlsScoresTtest
 ```
@@ -117,14 +117,14 @@ mlsScoresTtest
 From the t-test, we find a 95% confidence interval of (`r mlsScoresTtest$conf.int[1]`, `r mlsScoresTtest$conf.int[2]`).
 
 As with the NBA case, our data for MLS scores may be biased, but it should be sufficient for our purposes. We may do a two-variable t-test to compare NBA scores to MLS scores:
-```{r}
+```{r echo=F}
 nbaMlsTtest = t.test(nbaScores, mlsScores)
 nbaMlsTtest
 ```
 
 The previous t-test suggests that NBA games usually have much higher scores than MLS games. If this is the case, then viewers of sports games may feel like points in MLS games are harder to obtain. We will now compare the ranges of population means for Jazz games and RSL games that we derived with our t-tests. The low end of the Jazz scoring mean is `r nbaScoresTtest$conf.int[1]` and the high end of the mean for RSL is `r mlsScoresTtest$conf.int[2]`. We will create a ratio by dividing these by each other. This will show us the lowest ratio between our population means. We will also compute this ratio for the high end of the interval by using the upper bound of the Jazz means and the lower bound of the RSL mean. This will give us the maximum ratio between these two means.
 
-```{r}
+```{r echo=F}
 lowRatio <- nbaScoresTtest$conf.int[1]/mlsScoresTtest$conf.int[2]
 highRatio <- nbaScoresTtest$conf.int[2]/mlsScoresTtest$conf.int[1]
 ```
@@ -135,7 +135,7 @@ Here we have completed these computation and arrived at a ratio of `r lowRatio` 
 
 First we will take the data we collected and compute the mean values for each. Similar to what we did in the previous section for the scoring data.
 
-```{r}
+```{r echo=F}
 # import cheering data
 jazzData = read.csv("jazzFanData.csv")
 jazzCelebrationTimes = jazzData$Celebration.Time
@@ -147,7 +147,7 @@ knitr::kable(head(jazzData),col.names=c('Opposing Team','Year','Game Time',
 
 The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is celebration time. Next we will use this data and create a histogram.
 
-```{r}
+```{r echo=F}
 jazzCelebrationCount = length(jazzCelebrationTimes)
 jazzCelebrationMean = mean(jazzCelebrationTimes)
 jazzCelebreationSd = sd(jazzCelebrationTimes)
@@ -159,7 +159,7 @@ plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration T
 hist(jazzCelebrationTimes,breaks=6,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
 ```
 
-```{r}
+```{r echo=F}
 rslData = read.csv("rslFanData.csv")
 rslCelebrationTimes = rslData$Celebration.Time
 
@@ -173,13 +173,13 @@ knitr::kable(head(rslData),col.names=c('Opposing Team','Year','Game Time',
 Here we have created a histogram of our cheering data for Utah Jazz fans. We observe this follows close enough to a normal distribution to perform a t-test. Therefore, we will conduct a t-test with a 95% confidence interval to provide good evidence to the range of the population mean.
 
 
-```{r}
+```{r echo=F}
 jazzCelebrationTtest <- t.test(jazzCelebrationTimes)
 jazzCelebrationTtest
 ```
 From this t-test we have observed with 95% confidence the population mean will be within (`r jazzCelebrationTtest$conf.int[1]`, `r jazzCelebrationTtest$conf.int[2]`) seconds. Now we will do this same analysis on the RSL fan data.
 
-```{r}
+```{r echo=F}
 rslData = read.csv("rslFanData.csv")
 rslCelebrationTimes = rslData$Celebration.Time
 
@@ -190,7 +190,7 @@ knitr::kable(head(rslData),col.names=c('Opposing Team','Year','Game Time',
 
 Just like the Jazz fan data we have tracked variables of opposing team, year, game time, point number, celebration time, and location. We will be focusing on the celebration time in this analysis. First we will calculate mean and standard deviation values. Then we will use these values to create a normal curve distribution and overlay this with a histogram from our data.
 
-```{r}
+```{r echo=F}
 rslCelebrationCount = length(rslCelebrationTimes)
 rslCelebrationMean = mean(rslCelebrationTimes)
 rslCelebreationSd = sd(rslCelebrationTimes)
@@ -204,7 +204,7 @@ hist(rslCelebrationTimes,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
 
 The histogram of our RSL fan data seems to line up decently with a normal distribution. It is shifted a little to the left and has a couple outliers on the right side. This is probably due to some factors such as a game winning goal late into the game. Next, we will conduct a t-test with a 95% confidence interval as we have done with the Jazz fan data.
 
-```{r}
+```{r echo=F}
 rslCelebrationTtest <- t.test(rslCelebrationTimes)
 rslCelebrationTtest
 ```
