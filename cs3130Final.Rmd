@@ -52,7 +52,7 @@ knitr::kable(head(nbaPreliminaryData[,0:6]),align='c',
   kable_styling(full_width = F)
 ```
 
-As we can see, the `PTS` column corresponds to total points scored by the Jazz during a game.
+As we can see, the `Points` column corresponds to total points scored by the Jazz during a game.
 
 Mathematically, let $X$ be the total number of points scored by the Jazz in an NBA game. Our sample (shown earlier) represents only a small subset of the population, but it is sufficient for the motivation for this study. The following code block does some basic analysis on the data.
 
@@ -145,7 +145,7 @@ knitr::kable(head(jazzData),col.names=c('Opposing Team','Year','Game Time',
   kable_styling(full_width = F)
 ```
 
-The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is celebration time. Next we will use this data and create a histogram.
+The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is 'Celebration Time'. Next we will use this data and create a histogram.
 
 ```{r echo=F}
 jazzCelebrationCount = length(jazzCelebrationTimes)
