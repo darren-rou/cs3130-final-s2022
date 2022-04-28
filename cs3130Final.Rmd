@@ -42,11 +42,11 @@ Next, we wish to answer which fans are better. As mentioned earlier, counting th
 
 ## One Point In Soccer Is Worth X Points In Baseketball
 
-We consider scoring data for the Utah Jazz during the 2020-2021 and 2019-2020 regular season. More specifically, we consider the total points scored by the Jazz each game. This data about total points is available [from NBA.com](https://www.nba.com/stats/teams/boxscores/?Season=2020-21&SeasonType=Regular%20Season&CF=TEAM_NAME*E*Utah%20Jazz). We put this data into a `.csv` file, and using the `head()` function, we can see what it looks like:
+We consider scoring data for the Utah Jazz during the 2020-2021 and 2019-2020 regular season. More specifically, we consider the total points scored by the Jazz each game. This data about total points is available [from NBA.com](https://www.nba.com/stats/teams/boxscores/?Season=2020-21&SeasonType=Regular%20Season&CF=TEAM_NAME*E*Utah%20Jazz). We put this data into a `.csv` file, and using the `head()` function, we can create a table to see what it looks like:
 
 ```{r}
 nbaPreliminaryData = read.csv("jazzScores.csv") # data from nba.com
-head(nbaPreliminaryData)
+knitr::kable(head(nbaPreliminaryData[,0:6]),col.names=c('Team','Match Up','Game Date','W/L','Min','Points'))
 ```
 
 As we can see, the `PTS` column corresponds to total points scored by the Jazz during a game.
@@ -107,7 +107,7 @@ hist(mlsScores,
      xlab="Total points scored by RSL in a game",
      breaks=myBreaks
      )
-mlsScoreRange <- -.5:8
+mlsScoreRange <- c(-.5,0,.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5)
 mlsScoreNormal <- dnorm(mlsScoreRange,mean=mlsScoresMean,sd=mlsScoresSd)
 plot(mlsScoreRange,mlsScoreNormal,main="Histogram of total points (MLS) and Normal Curve",
      xlab="Total points scored by a team in a game",ylab = 'Density')
