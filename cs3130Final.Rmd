@@ -138,8 +138,6 @@ First we will take the data we collected and compute the mean values for each. S
 ```{r}
 # import cheering data
 jazzData = read.csv("jazzFanData.csv")
-rslData = read.csv("rslFanData.csv")
-rslCelebrationTimes = rslData$Celebration.Time
 jazzCelebrationTimes = jazzData$Celebration.Time
 
 knitr::kable(head(jazzData),col.names=c('Opposing Team','Year','Game Time',
@@ -159,11 +157,11 @@ jazzCelebrationRange <- c(0:12)
 jazzCelebrationNormal <- dnorm(jazzCelebrationRange,mean=jazzCelebrationMean,sd=jazzCelebreationSd)
 plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration Time (Jazz) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density')
 hist(jazzCelebrationTimes,breaks=6,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
-
-
 ```
 
 ```{r}
+rslData = read.csv("rslFanData.csv")
+rslCelebrationTimes = rslData$Celebration.Time
 
 knitr::kable(head(rslData),col.names=c('Opposing Team','Year','Game Time',
                                        'Point #','Celebration Time','Location'),align = 'c') %>%
@@ -179,11 +177,31 @@ Here we have created a histogram of our cheering data for Utah Jazz fans. We obs
 jazzCelebrationTtest <- t.test(jazzCelebrationTimes)
 jazzCelebrationTtest
 ```
-From this t-test we have observed with 95% confidence the population mean will be within (`r jazzCelebrationTtest$conf.int[1]`, `r jazzCelebrationTtest$conf.int[2]`) seconds.
+From this t-test we have observed with 95% confidence the population mean will be within (`r jazzCelebrationTtest$conf.int[1]`, `r jazzCelebrationTtest$conf.int[2]`) seconds. Now we will do this same analysis on the RSL fan data.
 
+```{r}
+rslData = read.csv("rslFanData.csv")
+rslCelebrationTimes = rslData$Celebration.Time
 
+knitr::kable(head(rslData),col.names=c('Opposing Team','Year','Game Time',
+                                        'Point #', 'Celebration  Time','Location'),align='c') %>%
+  kable_styling(full_width = F)
+```
 
-We also kept track of the same details in our RSL data collection as shown above. 
+Just like the Jazz fan data we have tracked variables of opposing team, year, game time, point number, celebration time, and location. We will be focusing on the celebration time in this analysis. First we will calculate mean and standard deviation values. Then we will use these values to create a normal curve distribution and overlay this with a histogram from our data.
+
+```{r}
+rslCelebrationCount = length(rslCelebrationTimes)
+rslCelebrationMean = mean(rslCelebrationTimes)
+rslCelebreationSd = sd(rslCelebrationTimes)
+
+rslCelebrationBreaks = c(min(rslCelebrationTimes):max(rslCelebrationTimes))
+rslCelebrationRange <- c(13:95)
+rslCelebrationNormal <- dnorm(rslCelebrationRange,mean=rslCelebrationMean,sd=rslCelebreationSd)
+plot(rslCelebrationRange,rslCelebrationNormal,main="Histogram of Celebration Time (RSL) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density')
+hist(rslCelebrationTimes,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
+```
+
 
 # Conclusion
 
