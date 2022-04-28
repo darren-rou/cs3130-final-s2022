@@ -187,6 +187,17 @@ knitr::kable(head(rslData),col.names=c('Opposing Team','Year','Game Time',
 ```
 
 
+Here we have created a histogram of our cheering data for Utah Jazz fans. We observe this follows close enough to a normal distribution to perform a t-test. Therefore, we will conduct a t-test with a 95% confidence interval to provide good evidence to the range of the population mean.
+
+
+```{r}
+jazzCelebrationTtest <- t.test(jazzCelebrationTimes)
+jazzCelebrationTtest
+```
+From this t-test we have observed with 95% confidence the population mean will be within (`r jazzCelebrationTtest$conf.int[1]`, `r jazzCelebrationTtest$conf.int[2]`) seconds.
+
+
+
 We also kept track of the same details in our RSL data collection as shown above. 
 
 # Conclusion

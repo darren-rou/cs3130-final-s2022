@@ -850,6 +850,21 @@ away
 </tr>
 </tbody>
 </table>
+<p>Here we have created a histogram of our cheering data for Utah Jazz fans. We observe this follows close enough to a normal distribution to perform a t-test. Therefore, we will conduct a t-test with a 95% confidence interval to provide good evidence to the range of the population mean.</p>
+<pre class="r"><code>jazzCelebrationTtest &lt;- t.test(jazzCelebrationTimes)
+jazzCelebrationTtest</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  jazzCelebrationTimes
+## t = 14.828, df = 49, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  4.41557 5.80003
+## sample estimates:
+## mean of x 
+##    5.1078</code></pre>
+<p>From this t-test we have observed with 95% confidence the population mean will be within (4.4155696, 5.8000304) seconds.</p>
 <p>We also kept track of the same details in our RSL data collection as shown above.</p>
 </div>
 </div>
