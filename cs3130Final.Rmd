@@ -63,11 +63,6 @@ nbaScoresMean = mean(nbaScores) # sample mean
 nbaScoresSd = sd(nbaScores) # sample standard deviation
 summary(nbaScores)
 
-hist(nbaScores,
-     main="Histogram of total points (Utah Jazz)",
-     xlab="Total points scored by the Utah Jazz in a game",
-     )
-
 nbaScoresRange <- min(nbaScores):max(nbaScores)
 nbaScoresNormal <- dnorm(nbaScoresRange,mean=nbaScoresMean,sd=nbaScoresSd)
 plot(nbaScoresRange,nbaScoresNormal,main="Histogram of total points (NBA) and Normal Curve",
@@ -105,13 +100,6 @@ mlsScoresCount = length(mlsScores)
 mlsScoresMean = mean(mlsScores)
 mlsScoresSd = sd(mlsScores)
 
-# interestingly, the scores go from 0 to 8. We can make nice breaks for the histogram
-myBreaks = c(-.5:6.5)
-hist(mlsScores,
-     main="Histogram of total points (RSL)",
-     xlab="Total points scored by RSL in a game",
-     breaks=myBreaks
-     )
 mlsScoreRange <- c(min(mlsScores):(2*max(mlsScores)))/2
 mlsScoreNormal <- dnorm(mlsScoreRange,mean=mlsScoresMean,sd=mlsScoresSd)
 plot(mlsScoreRange,mlsScoreNormal,main="Histogram of total points (MLS) and Normal Curve",
@@ -167,9 +155,6 @@ jazzCelebrationMean = mean(jazzCelebrationTimes)
 jazzCelebreationSd = sd(jazzCelebrationTimes)
 
 jazzCelebrationBreaks = c(min(jazzCelebrationTimes):max(jazzCelebrationTimes))
-hist(jazzCelebrationTimes,
-     main="Histogram of Celebration Time (Jazz)",
-     xlab="Total Time Fans Cheered After a Score",breaks=6)
 jazzCelebrationRange <- c(0:12)
 jazzCelebrationNormal <- dnorm(jazzCelebrationRange,mean=jazzCelebrationMean,sd=jazzCelebreationSd)
 plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration Time (Jazz) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density')
