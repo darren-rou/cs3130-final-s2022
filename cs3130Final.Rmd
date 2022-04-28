@@ -24,9 +24,9 @@ In this day and age almost everything has turned into a competition, some of the
 
 ## Scoring Data
 
-[nba.com](https://www.nba.com/stats/teams/boxscores/?Season=2020-21&SeasonType=Regular%20Season&CF=TEAM_NAME*E*Utah%20Jazz) provides scoring data for NBA teams. This website allows filtering of data by team, season, and the type of game (regular, playoffs, etc.). We note that there aren't many playoff games for the Jazz. With this taken into consideration, we choose to take all scoring data from playoff, play-in, and regular season games. We do with the assumption that games scores do not depend on the type of game. This assumption is reasonable for our purposes.
+[nba.com](https://www.nba.com/stats/teams/boxscores/?Season=2020-21&SeasonType=Regular%20Season&CF=TEAM_NAME*E*Utah%20Jazz) provides scoring data for NBA teams. This website allows filtering of data by team, season, and the type of game (regular, playoffs, etc.). We note that there aren't many playoff games for the Jazz. With this taken into consideration, we choose to take all scoring data from playoff, play-in, and regular season games. We do so with the assumption that games scores do not depend on the type of game. This assumption is reasonable for our purposes. We are interested in the total points scored by the Utah Jazz each game.
 
-Similar to how we obtained data from nba.com, [kaggle.com](https://www.kaggle.com/datasets/josephvm/major-league-soccer-dataset?resource=download&select=matches.csv), provides scoring data for MLS teams. For our study we have pulled data only relating to RSL teams for our sample.
+We repeat the same process of the RSL. We collect data about the total points scored each game.
 
 ## Cheering Data
 
@@ -43,7 +43,7 @@ Next, we wish to use this information answer which fans are better. As mentioned
 
 ## One Point In Soccer Is Worth X Points In Baseketball
 
-We consider scoring data for the Utah Jazz during the 2020-2021 and 2019-2020 regular season. More specifically, we consider the total points scored by the Jazz each game. This data about total points is available [from NBA.com](https://www.nba.com/stats/teams/boxscores/?Season=2020-21&SeasonType=Regular%20Season&CF=TEAM_NAME*E*Utah%20Jazz). We put this data into a `.csv` file, and using the `head()` function, we can create a table to see what it looks like:
+We consider the total points scored by the Jazz each game in the 2019--2020 and 2020--2021 seasons. We put this data into a `.csv` file, and using the `head()` function, we can create a table to see what it looks like:
 
 ```{r echo=F}
 nbaPreliminaryData = read.csv("jazzScores.csv") # data from nba.com
@@ -54,7 +54,7 @@ knitr::kable(head(nbaPreliminaryData[,0:6]),align='c',
 
 As we can see, the `Points` column corresponds to total points scored by the Jazz during a game.
 
-Mathematically, let $X$ be the total number of points scored by the Jazz in an NBA game. Our sample (shown earlier) represents only a small subset of the population, but it is sufficient for the motivation for this study. The following code block does some basic analysis on the data.
+The population we would like to consider consists of all points scored by the Jazz in a game. Our sample (shown earlier) represents only a small portion of the population, but it is sufficient for the motivation for this study. We will now do some basic analysis on the data.
 
 ```{r echo=F}
 nbaScores = nbaPreliminaryData$PTS
@@ -71,7 +71,7 @@ hist(nbaScores,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
 
 ```
 
-With this sample size of ${n_X=}$ `r nbaScoresCount`, we find the sample mean to be ${\bar{x}=}$ `r nbaScoresMean` and the sample standard deviation to be ${s_{X}=}$ `r nbaScoresSd`. As shown by the previous histogram, the data is approximately normal, and using a t-distribution for analysis is suitable:
+The previous histogram had a sample size of `r nbaScoresCount`. We find the sample mean to be `r nbaScoresMean` and the sample standard deviation to be `r nbaScoresSd`. As shown by the previous histogram, the data is approximately normal, and using a t-distribution for analysis is suitable.
 
 ```{r echo=F}
 nbaScoresTtest = t.test(nbaScores)
@@ -82,7 +82,7 @@ The previous t-test gives a 95% confidence interval of (`r nbaScoresTtest$conf.i
 
 Note that the data we obtained from nba.com is biased. We only sampled from the 2020-2021 season, and we only sampled from playoff games. But for our purposes, this biased sample should be sufficient.
 
-Now, we consider data for the MLS. Data for the MLS is available [from kaggle.com](https://www.kaggle.com/datasets/josephvm/major-league-soccer-dataset?resource=download&select=matches.csv). Similar to our NBA analysis, we want to consider the total points scored each team in a game.
+Now, we consider data for the MLS.  Similar to our NBA analysis, we want to consider the total points scored by the RSL in a game.
 
 ```{r echo=F}
 mlsPreliminaryData = read.csv("rslScores.csv")
@@ -107,16 +107,17 @@ plot(mlsScoreRange,mlsScoreNormal,main="Histogram of total points (MLS) and Norm
 hist(mlsScores,breaks=-.5:8.5,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
 ```
 
-With our sample size of ${n_Y=}$ `r mlsScoresCount`, we find the sample mean to be ${\bar{y}=}$ `r mlsScoresMean`, and we find the sample standard deviation to be ${s_{Y}=}$ `r mlsScoresSd`. Compared to the sample mean, the sample standard deviation is quite large. The previous histograms shows that RSL scores approximately follow a normal distribution. Note that the data seems to be skewed left. We can use a t-test to find a confidence interval:
+The previous histogram had a sample size of `r mlsScoresCount`. We find the sample mean to be `r mlsScoresMean`, and we find the sample standard deviation to be `r mlsScoresSd`. Compared to the sample mean, the sample standard deviation is quite large. The previous histograms shows that RSL scores approximately follow a normal distribution. Note that the data seems to be skewed left. We can use a t-test to find a confidence interval.
 
 ```{r echo=F}
 mlsScoresTtest = t.test(mlsScores)
 mlsScoresTtest
 ```
 
-From the t-test, we find a 95% confidence interval of (`r mlsScoresTtest$conf.int[1]`, `r mlsScoresTtest$conf.int[2]`).
+Using a t-test, we find a 95% confidence interval of (`r mlsScoresTtest$conf.int[1]`, `r mlsScoresTtest$conf.int[2]`).
 
 As with the NBA case, our data for MLS scores may be biased, but it should be sufficient for our purposes. We may do a two-variable t-test to compare NBA scores to MLS scores:
+
 ```{r echo=F}
 nbaMlsTtest = t.test(nbaScores, mlsScores)
 nbaMlsTtest
@@ -145,7 +146,13 @@ knitr::kable(head(jazzData),col.names=c('Opposing Team','Year','Game Time',
   kable_styling(full_width = F)
 ```
 
-The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is 'Celebration Time'. Next we will use this data and create a histogram.
+The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is 'Celebration Time'. Here are some summary statistics for the celebration times:
+
+```{r}
+summary(jazzCelebrationTimes)
+```
+
+Next we will use this data and create a histogram.
 
 ```{r echo=F}
 jazzCelebrationCount = length(jazzCelebrationTimes)
@@ -172,11 +179,18 @@ knitr::kable(head(rslData),col.names=c('Opposing Team','Year','Game Time',
 
 Here we have created a histogram of our cheering data for Utah Jazz fans. We observe this follows close enough to a normal distribution to perform a t-test. Therefore, we will conduct a t-test with a 95% confidence interval to provide good evidence to the range of the population mean.
 
+Here are some summary statistics for RSL fans' celebration times:
+
+```{r}
+summary(rslCelebrationTimes)
+```
+
 
 ```{r echo=F}
 jazzCelebrationTtest <- t.test(jazzCelebrationTimes)
 jazzCelebrationTtest
 ```
+
 From this t-test we have observed with 95% confidence the population mean will be within (`r jazzCelebrationTtest$conf.int[1]`, `r jazzCelebrationTtest$conf.int[2]`) seconds. Now we will do this same analysis on the RSL fan data.
 
 ```{r echo=F}
@@ -209,6 +223,20 @@ rslCelebrationTtest <- t.test(rslCelebrationTimes)
 rslCelebrationTtest
 ```
 From this t-test we have observed with 95% confidence the population mean will be within (`r rslCelebrationTtest$conf.int[1]`, `r rslCelebrationTtest$conf.int[2]`) seconds.
+
+Next, we will perform a two-variable t-test using a 95% confidence level to determine if there is a difference bewtween Jazz fans' celebration times and RSL fans' celebration times.
+```{r echo=F}
+bothCelebrationTtest <- t.test(jazzCelebrationTimes, rslCelebrationTimes)
+bothCelebrationTtest
+```
+
+As we can see from the previous t-test, we can say with 95% confidence that the population means are not equal. The 95% confidence interval for this t-test is (`r bothCelebrationTtest$conf.int[1]`, `r bothCelebrationTtest$conf.int[2]`). This confidence interval says that on average, Jazz fans' celebration time are shorter than RSL fans' celebration time.
+
+# Limitations
+
+As discussed earlier, the data we have gathered is probably not totally random. However, it is possible that the data we have good is somewhat good at representing the underlying populations. We tried to get random data as much as possible, but we ran into issues such as sports games being unavailable for viewing. To alleviate these problems, we gathered data from different games. Additionally, our large sample size of `r jazzCelebrationCount` for both Jazz and RSL helped make the data more representative.
+
+There is also the matter of data. All our data come from sports games which have taken place in the past few years. In the context of our question, it could be argued that gathering data from a wide range of years may have been better. However, it is also reasonable to say that data from recent years is more relevant to most people---sports fans may not care too much about what happened decades ago, and they may be more interested in data from recent years.
 
 # Conclusion
 
