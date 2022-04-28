@@ -137,13 +137,7 @@ lowRatio <- nbaScoresTtest$conf.int[1]/mlsScoresTtest$conf.int[2]
 highRatio <- nbaScoresTtest$conf.int[2]/mlsScoresTtest$conf.int[1]
 ```
 
-Here we have completed these computation and arrived at a ratio of `r lowRatio` for the lower bound and `r highRatio` for the higher bound.
-
-
-
-If points in MLS games are harder obtain, then we are led to the question *"do MLS fans cheer harder than NBA fans?"* It may be hard to quantify the idea of "harder," so instead we consider *duration*. To narrow our scope, and to keep things interesting to Utahs, we consider RSL and Utah Jazz instead of the entire MLS and entire NBA, respectively. This leads us to our question for this study:
-
-**Do RSL fans cheer longer than Jazz fans?**
+Here we have completed these computation and arrived at a ratio of `r lowRatio` for the lower bound and `r highRatio` for the higher bound. This means that one point scored by RSL is at least equivalent to `r lowRatio` Jazz points and at most equivalent to `r highRatio` Jazz points. These values will be crucial in determining if RSL fans truly cheer harder than Jazz fans.
 
 ## Who Are the Better Fans
 ```{r}

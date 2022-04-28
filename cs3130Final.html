@@ -395,9 +395,7 @@ nbaMlsTtest</code></pre>
 <p>The previous t-test suggests that NBA games usually have much higher scores than MLS games. If this is the case, then viewers of sports games may feel like points in MLS games are harder to obtain. We will now compare the ranges of population means for Jazz games and RSL games that we derived with our t-tests. The low end of the Jazz scoring mean is 112.2563898 and the high end of the mean for RSL is 1.6826519. We will create a ratio by dividing these by each other. This will show us the lowest ratio between our population means. We will also compute this ratio for the high end of the interval by using the upper bound of the Jazz means and the lower bound of the RSL mean. This will give us the maximum ratio between these two means.</p>
 <pre class="r"><code>lowRatio &lt;- nbaScoresTtest$conf.int[1]/mlsScoresTtest$conf.int[2]
 highRatio &lt;- nbaScoresTtest$conf.int[2]/mlsScoresTtest$conf.int[1]</code></pre>
-<p>Here we have completed these computation and arrived at a ratio of 66.71397 for the lower bound and 98.3821455 for the higher bound.</p>
-<p>If points in MLS games are harder obtain, then we are led to the question <em>“do MLS fans cheer harder than NBA fans?”</em> It may be hard to quantify the idea of “harder,” so instead we consider <em>duration</em>. To narrow our scope, and to keep things interesting to Utahs, we consider RSL and Utah Jazz instead of the entire MLS and entire NBA, respectively. This leads us to our question for this study:</p>
-<p><strong>Do RSL fans cheer longer than Jazz fans?</strong></p>
+<p>Here we have completed these computation and arrived at a ratio of 66.71397 for the lower bound and 98.3821455 for the higher bound. This means that one point scored by RSL is at least equivalent to 66.71397 Jazz points and at most equivalent to 98.3821455 Jazz points. These values will be crucial in determining if RSL fans truly cheer harder than Jazz fans.</p>
 </div>
 <div id="who-are-the-better-fans" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Who Are the Better Fans</h2>
