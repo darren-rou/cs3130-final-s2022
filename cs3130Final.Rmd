@@ -159,7 +159,24 @@ knitr::kable(head(jazzData),col.names=c('Opposing Team','Year','Game Time',
   kable_styling(full_width = F)
 ```
 
-The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is celebration time. 
+The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is celebration time. Next we will use this data and create a histogram.
+
+```{r}
+jazzCelebrationCount = length(jazzCelebrationTimes)
+jazzCelebrationMean = mean(jazzCelebrationTimes)
+jazzCelebreationSd = sd(jazzCelebrationTimes)
+
+jazzCelebrationBreaks = c(min(jazzCelebrationTimes):max(jazzCelebrationTimes))
+hist(jazzCelebrationTimes,
+     main="Histogram of Celebration Time (Jazz)",
+     xlab="Total Time Fans Cheered After a Score")
+jazzCelebrationRange <- c(1:12)
+jazzCelebrationNormal <- dnorm(jazzCelebrationRange,mean=jazzCelebrationMean,sd=jazzCelebreationSd)
+plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration Time (Jazz) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density')
+hist(jazzCelebrationTimes,breaks=0:14,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
+
+
+```
 
 ```{r}
 
