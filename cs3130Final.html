@@ -403,7 +403,44 @@ highRatio &lt;- nbaScoresTtest$conf.int[2]/mlsScoresTtest$conf.int[1]</code></pr
 jazzData = read.csv(&quot;jazzFanData.csv&quot;)
 rslData = read.csv(&quot;rslFanData.csv&quot;)
 rslCelebrationTimes = rslData$Celebration.Time
-jazzCelebrationTimes = jazzData$Celebration.Time</code></pre>
+jazzCelebrationTimes = jazzData$Celebration.Time
+
+celebrationDf &lt;- data.frame(rslCelebrationTimes,jazzCelebrationTimes)
+knitr::kable(head(celebrationDf),col.names=c(&#39;RSL Celebration Time&#39;, &#39;Jazz Celebration Time&#39;),align=&#39;c&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="center">RSL Celebration Time</th>
+<th align="center">Jazz Celebration Time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">35.70</td>
+<td align="center">6.98</td>
+</tr>
+<tr class="even">
+<td align="center">43.40</td>
+<td align="center">7.02</td>
+</tr>
+<tr class="odd">
+<td align="center">24.20</td>
+<td align="center">10.00</td>
+</tr>
+<tr class="even">
+<td align="center">21.59</td>
+<td align="center">7.63</td>
+</tr>
+<tr class="odd">
+<td align="center">25.64</td>
+<td align="center">10.65</td>
+</tr>
+<tr class="even">
+<td align="center">38.67</td>
+<td align="center">6.62</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="conclusion" class="section level1" number="5">

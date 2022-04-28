@@ -146,7 +146,12 @@ jazzData = read.csv("jazzFanData.csv")
 rslData = read.csv("rslFanData.csv")
 rslCelebrationTimes = rslData$Celebration.Time
 jazzCelebrationTimes = jazzData$Celebration.Time
+
+celebrationDf <- data.frame(rslCelebrationTimes,jazzCelebrationTimes)
+knitr::kable(head(celebrationDf),col.names=c('RSL Celebration Time', 'Jazz Celebration Time'),align='c')
 ```
+
+
 
 
 # Conclusion
