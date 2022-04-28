@@ -202,6 +202,13 @@ plot(rslCelebrationRange,rslCelebrationNormal,main="Histogram of Celebration Tim
 hist(rslCelebrationTimes,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
 ```
 
+The histogram of our RSL fan data seems to line up decently with a normal distribution. It is shifted a little to the left and has a couple outliers on the right side. This is probably due to some factors such as a game winning goal late into the game. Next, we will conduct a t-test with a 95% confidence interval as we have done with the Jazz fan data.
+
+```{r}
+rslCelebrationTtest <- t.test(rslCelebrationTimes)
+rslCelebrationTtest
+```
+From this t-test we have observed with 95% confidence the population mean will be within (`r rslCelebrationTtest$conf.int[1]`, `r rslCelebrationTtest$conf.int[2]`) seconds.
 
 # Conclusion
 
