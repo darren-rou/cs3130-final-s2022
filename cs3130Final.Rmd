@@ -85,7 +85,7 @@ summary(nbaScores)
 
 nbaScoresRange <- min(nbaScores):max(nbaScores)
 nbaScoresNormal <- dnorm(nbaScoresRange,mean=nbaScoresMean,sd=nbaScoresSd)
-plot(nbaScoresRange,nbaScoresNormal,main="Histogram of total points (NBA) and Normal Curve",
+plot(nbaScoresRange,nbaScoresNormal,main="Histogram of total points (Jazz) and Normal Curve",
      xlab="Total points scored by a team in a game",ylab = 'Density', col = rgb(0,0,.502))
 hist(nbaScores,freq=FALSE,add=TRUE, col = rgb(1,.85,0,alpha=0.25))
 
@@ -114,7 +114,7 @@ knitr::kable(head(mlsPreliminaryData),col.names=c('Team','Final Score','Year'),a
 
 Above is a table representing the data retrieved in the 2021-2022 season, from google.com. The column we are interested in for our study's purposes is the `Final Score`.
 
-Similar to before, let $Y$ be the total number of points scored by a team in an MLS game.
+Similar to before, we consider be the total number of points scored by the RSL in a game.
 
 ```{r echo=F}
 mlsScores = mlsPreliminaryData$Final.Score
@@ -124,7 +124,7 @@ mlsScoresSd = sd(mlsScores)
 
 mlsScoreRange <- c(min(mlsScores):(2*max(mlsScores)))/2
 mlsScoreNormal <- dnorm(mlsScoreRange,mean=mlsScoresMean,sd=mlsScoresSd)
-plot(mlsScoreRange,mlsScoreNormal,main="Histogram of total points (MLS) and Normal Curve",
+plot(mlsScoreRange,mlsScoreNormal,main="Histogram of total points (RSL) and Normal Curve",
      xlab="Total points scored by a team in a game",ylab = 'Density', col = 'red')
 hist(mlsScores,breaks=-.5:8.5,freq=FALSE,add=TRUE, col = rgb(0,.278,.671,alpha=0.25))
 ```
@@ -291,7 +291,7 @@ Again, we see a significant difference between home and away game celebration ti
 
 As discussed earlier, the data we have gathered is not totally random. However, it is possible that the data we have good is somewhat good at representing the underlying populations. We tried to get random data as much as possible, but we ran into issues such as sports games being unavailable for viewing. To alleviate these problems, we gathered data from different games. Additionally, our large sample size of `r jazzCelebrationCount` for both Jazz and RSL helped make the data more representative.
 
-There is also the matter of data. All our data come from sports games which have taken place in the past few years. In the context of our question, it could be argued that gathering data from a wide range of years may have been better. However, it is also reasonable to say that data from recent years is more relevant to most people---sports fans may not care too much about what happened decades ago, and they may be more interested in data from recent years.
+There is also the matter of date. All our data come from sports games which have taken place in the past few years. In the context of our question, it could be argued that gathering data from a wide range of years may have been better. However, it is also reasonable to say that data from recent years is more relevant to most people---sports fans may not care too much about what happened decades ago, and they may be more interested in data from recent years.
 
 # Conclusion
 
