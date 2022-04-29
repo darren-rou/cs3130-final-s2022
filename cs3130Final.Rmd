@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
 library(kableExtra)
+colors(distinct = TRUE)
 ```
 
 # Introduction
@@ -82,8 +83,8 @@ summary(nbaScores)
 nbaScoresRange <- min(nbaScores):max(nbaScores)
 nbaScoresNormal <- dnorm(nbaScoresRange,mean=nbaScoresMean,sd=nbaScoresSd)
 plot(nbaScoresRange,nbaScoresNormal,main="Histogram of total points (NBA) and Normal Curve",
-     xlab="Total points scored by a team in a game",ylab = 'Density')
-hist(nbaScores,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
+     xlab="Total points scored by a team in a game",ylab = 'Density', col = rgb(0,0,.502))
+hist(nbaScores,freq=FALSE,add=TRUE, col = rgb(1,.85,0,alpha=0.25))
 
 ```
 
@@ -119,8 +120,8 @@ mlsScoresSd = sd(mlsScores)
 mlsScoreRange <- c(min(mlsScores):(2*max(mlsScores)))/2
 mlsScoreNormal <- dnorm(mlsScoreRange,mean=mlsScoresMean,sd=mlsScoresSd)
 plot(mlsScoreRange,mlsScoreNormal,main="Histogram of total points (MLS) and Normal Curve",
-     xlab="Total points scored by a team in a game",ylab = 'Density')
-hist(mlsScores,breaks=-.5:8.5,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
+     xlab="Total points scored by a team in a game",ylab = 'Density', col = 'red')
+hist(mlsScores,breaks=-.5:8.5,freq=FALSE,add=TRUE, col = rgb(0,.278,.671,alpha=0.25))
 ```
 
 The previous histogram had a sample size of `r mlsScoresCount`. We find the sample mean to be `r mlsScoresMean`, and we find the sample standard deviation to be `r mlsScoresSd`. Compared to the sample mean, the sample standard deviation is quite large. The previous histograms shows that RSL scores approximately follow a normal distribution. Note that the data seems to be skewed left. We can use a t-test to find a confidence interval.
@@ -178,8 +179,8 @@ jazzCelebreationSd = sd(jazzCelebrationTimes)
 jazzCelebrationBreaks = c(min(jazzCelebrationTimes):max(jazzCelebrationTimes))
 jazzCelebrationRange <- c(0:12)
 jazzCelebrationNormal <- dnorm(jazzCelebrationRange,mean=jazzCelebrationMean,sd=jazzCelebreationSd)
-plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration Time (Jazz) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density')
-hist(jazzCelebrationTimes,breaks=6,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
+plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration Time (Jazz) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density', col = rgb(0,0,.502))
+hist(jazzCelebrationTimes,breaks=6,freq=FALSE,add=TRUE, col = rgb(1,.85,0,alpha=0.25))
 ```
 
 ```{r echo=F}
@@ -228,8 +229,8 @@ rslCelebreationSd = sd(rslCelebrationTimes)
 rslCelebrationBreaks = c(min(rslCelebrationTimes):max(rslCelebrationTimes))
 rslCelebrationRange <- c(10:100)
 rslCelebrationNormal <- dnorm(rslCelebrationRange,mean=rslCelebrationMean,sd=rslCelebreationSd)
-plot(rslCelebrationRange,rslCelebrationNormal,main="Histogram of Celebration Time (RSL) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density')
-hist(rslCelebrationTimes,freq=FALSE,add=TRUE, col = rgb(0,0,0,alpha=0.1))
+plot(rslCelebrationRange,rslCelebrationNormal,main="Histogram of Celebration Time (RSL) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density', col = 'red')
+hist(rslCelebrationTimes,freq=FALSE,add=TRUE, col = rgb(0,.278,.671,alpha=0.25))
 ```
 
 The histogram of our RSL fan data seems to line up decently with a normal distribution. It is shifted a little to the left and has a couple outliers on the right side. This is probably due to some factors such as a game winning goal late into the game. Next, we will conduct a t-test with a 95% confidence interval as we have done with the Jazz fan data.
