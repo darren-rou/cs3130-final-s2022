@@ -32,6 +32,8 @@ We repeat the same process of the RSL. We collect data about the total points sc
 
 To collect data, we watched RSL and Jazz games and observed the crowd when there was an instance of scoring. Then, using a stopwatch we timed the duration of the crowd's cheering. For the basketball games this was simple as there are no cuts in the video feed, but for soccer game this was a little harder. Since there is a delay in game play after a goal is scored in soccer the broadcasting network cuts away from the live feed and shows instant replays. These replays, however, still have live audio from the commentators and the crowd can still be heard. Thus, to gather data for the celebration time we focused on listening to the crowd during the replays and did our best to estimate when the crowd had stopped cheering. The act of timing the crowd's reaction introduces error in itself, but the added difficulty of not having a single continuous video feed made accurate data collection even more difficult. 
 
+Our samples each consist of 50 data points. For the Jazz games we chose 5 random instances of scoring out of 10 different games that were also chosen at random between 2021-2022. We also noticed a change in the crowds cheering between home and away games so we chose an even number, 5 home games and 5 away games, to collect data from. The soccer games were harder to find and for this reason we essentially chose all of the games that we could find video on. Most of these were also from the 2021-2022 season.
+
 
 # Methodology
 
@@ -57,13 +59,9 @@ In other words, in a bad case (standard deviation of around 60 seconds), the wid
 
 # Analysis
 
-<<<<<<< Updated upstream
-## One Point In Soccer Is Worth X Points In Basketball
-=======
 ## One RSL Point Is Worth X Utah Jazz Points
->>>>>>> Stashed changes
 
-One RSL point is worth how many Utah Jazz points? To answer this question, we start  consider the total points scored by the Jazz each game in the 2019--2020 and 2020--2021 seasons. We put this data into a `.csv` file, and using the `head()` function, we can create a table to see what it looks like:
+One RSL point is worth how many Utah Jazz points? To answer this question, we consider the total points scored by the Jazz each game in the 2019--2020 and 2020--2021 seasons. We put this data into a `.csv` file, and using the `head()` function, we can create a table to see what it looks like:
 
 ```{r echo=F}
 nbaPreliminaryData = read.csv("jazzScores.csv") # data from nba.com
@@ -98,11 +96,11 @@ nbaScoresTtest = t.test(nbaScores)
 nbaScoresTtest
 ```
 
-The previous t-test gives a 95% confidence interval of (`r nbaScoresTtest$conf.int[1]`, `r nbaScoresTtest$conf.int[2]`). In terms of NBA scores, this interval is quite small. Our sample suggests the mean points scored by a team in an NBA points in this interval with 95% confidence.
+The previous t-test gives a 95% confidence interval of (`r nbaScoresTtest$conf.int[1]`, `r nbaScoresTtest$conf.int[2]`). In terms of NBA scores, this interval is quite small. Our analysis shows that we have good evidence that the population mean of Jazz scores is within these bounds.
 
 Note that the data we obtained from nba.com is biased. We only sampled from the 2020-2021 season, and we only sampled from playoff games. But for our purposes, this biased sample should be sufficient.
 
-Now, we consider data for the MLS.  Similar to our NBA analysis, we want to consider the total points scored by the RSL in a game.
+Now, we consider data for RSL.  Similar to our Jazz analysis, we want to consider the total points scored by the RSL in a game.
 
 ```{r echo=F}
 mlsPreliminaryData = read.csv("rslScores.csv")
@@ -110,7 +108,7 @@ knitr::kable(head(mlsPreliminaryData),col.names=c('Team','Final Score','Year'),a
   kable_styling(full_width = F)
 ```
 
-Above is a table representing the data retrieved from kaggle.com. The column we are interested in for our study's purposes is the `Final Score`.
+Above is a table representing the data retrieved in the 2021-2022 season, from google.com. The column we are interested in for our study's purposes is the `Final Score`.
 
 Similar to before, let $Y$ be the total number of points scored by a team in an MLS game.
 
@@ -156,7 +154,7 @@ Completing these computation we have arrived at a ratio of `r lowRatio` for the 
 
 ## How Long Do RSL Fans Cheer Compared to Jazz Fans
 
-First we will take the data we collected and compute the mean values for each. Similar to what we did in the previous section for the scoring data.
+Next, we will see if the cheering times between fans of RSL and the Utah Jazz are significantly differen.t First, we will take the data we collected and compute the mean values for each. Similar to what we did in the previous section for the scoring data.
 
 ```{r echo=F}
 # import cheering data
@@ -279,9 +277,3 @@ There is also the matter of data. All our data come from sports games which have
 Finally, let's see our what these results mean. Is there a good reason RSL fans cheer longer than Jazz fans? Or could it be that RSL fans are simply more dedicated than Jazz fans?
 
 We first found that during on average, the Utah Jazz scores between 112.3 and 115.8 points per game, an estimated mean of approximately 114 points. Next we found that Real Salt Lake (RSL) scores between  1.2 and 1.7 points with an estimated mean of 1.4 points. Shifting our focus now on the celebration times, the Jazz fans cheered on average between 4.4 and 5.8 seconds, with an estimated mean of 5.1078 seconds per point. RSL fans cheered for between 36.4 and 45.8 seconds with an estimated mean of 41.1 seconds per point. 
-
-<<<<<<< Updated upstream
-With this in mind, ***to be concluded further***
-=======
- 
->>>>>>> Stashed changes
