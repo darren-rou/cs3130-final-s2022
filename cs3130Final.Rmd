@@ -19,7 +19,7 @@ colors(distinct = TRUE)
 
 # Introduction
 
-If you've ever been to a MLS game you know the crowd goes crazy when their team scores a goal. In comparison at an NBA game the crowd cheers, but without the same amount of enthusiasm. This study aims to look into this phenomenon and see if we can find important factors that contribute to this. The hypothesis of this study is that the amount of time a crowd cheers is dependent on the number of points scored per game. To investigate this question we will look at Utah's professional soccer and basketball teams RSL and the Utah Jazz. First we will collect data on the total points scored for these teams. Then, we will collect data on how long each team's respective crowd cheers when they score a point. We will then compare these values and see if there is any connection between them. 
+If you've ever been to a MLS game you know the crowd goes crazy when their team scores a goal. In comparison at an NBA game the crowd cheers, but without the same amount of enthusiasm. This study aims to look into this phenomenon and see if we can find important factors that contribute to this. The hypothesis of this study is that the amount of time a crowd cheers is dependent on the number of points scored per game. To investigate this question we will look at Utah's professional soccer and basketball teams Real Salt Lake (RSL) and the Utah Jazz. First we will collect data on the total points scored for these teams. Then, we will collect data on how long each team's respective crowd cheers when they score a point. We will then compare these values and see if there is any connection between them. 
 
 # Data Discovery
 
@@ -40,9 +40,9 @@ After data collection, we were given many measurements to choose from. The first
 
 Next, we wish to use this information to see why RSL fans cheer longer than Jazz Fans. From our data sets, we will take the sample of cheer time per point, plot a histogram and normal curve, and analyze our results. This should prepare us to run another t-test of this sample, to find a range wherein lies the population mean. For consistency, we will use the 95% confidence interval from before. Once both t-tests are run for both cheer time data sets, we may start to draw conclusions from our results.
 
-One experimental parameter is this important is the sample size. It is conventional to have a sample size of 30 or greater. We will consider the t-scores which arises from using a sample size of 50. For sample size of 50 and a 95% confidence interval. The result is `r qt(0.975, df=49)`. This is a good value for our experiment. This number means we have a 95% chance, that our sample mean will be within about 2 t-scores of the true population mean. Note that our confidence interval for the t-scores is about (-2, 2).
+One experimental parameter is this important is the sample size. It is conventional to have a sample size of 30 or greater. We will consider the t-scores which arises from using a sample size of 50. For sample size of 50 and a 95% confidence interval. The result is `r qt(0.975, df=49)`. This is a good value for our experiment. This number means we have a 95% chance, that our sample mean will be within about 2 standard deviations of the true population mean.
 
-We will now consider what 2 t-scores means in terms of fans' celebration time. We will use external knowledge of sports games. Using our knowledge of sports games, we can say that the standard deviation of fans' celebration times is probably much lower than 60 seconds. We will 60 seconds as the standard deviation as a worse case scenario. In terms of a t-score of 2, we have an estimated EBM of
+We will now consider what 2 t-scores means in terms of fans' celebration time. We will use external knowledge of sports games. Using our knowledge of sports games, we can say that the standard deviation of fans' celebration times is probably much lower than 60 seconds. We will use 60 seconds as the standard deviation as a worse case scenario. In terms of a t-score of 2, we have an estimated EBM of
 
 $$
 2 \frac{60}{\sqrt{50}}
@@ -54,7 +54,7 @@ calc1 = calc/(60/10)
 
 which evaluates to `r calc`. Considering that 60 is probably much higher than the true value, this value is not bad. For example, if instead the standard deviation was a more reasonable value, say, around 10, then we would have gotten `r calc1` as our EBM.
 
-In other words, in a bad case (standard deviation of around 60 seconds), the width of our confidence interval will be about twice `r calc` or about 34. In a good case (standard deviation of about 10 seconds), the width of our confidence interval will be about twice `r calc1` or about 5.7. Considering all of this, we will decide that a sample size of 50 (or greater) with our constructed 95% confidence interval is suitable for our experiment.
+In other words, in a bad case (standard deviation of around 60 seconds), the width of our confidence interval will be about twice `r calc` or about 34 seconds. In a good case (standard deviation of about 10 seconds), the width of our confidence interval will be about twice `r calc1` or about 5.7 seconds. Considering all of this, we will decide that a sample size of 50 (or greater) with our constructed 95% confidence interval is suitable for our experiment.
 
 # Analysis
 
@@ -133,21 +133,23 @@ mlsScoresTtest
 
 Using a t-test, we find a 95% confidence interval of (`r mlsScoresTtest$conf.int[1]`, `r mlsScoresTtest$conf.int[2]`).
 
-As with the NBA case, our data for MLS scores may be biased, but it should be sufficient for our purposes. We may do a two-variable t-test to compare NBA scores to MLS scores:
+As with the NBA case, our data for MLS scores may be biased, but it should be sufficient for our purposes. Although it seems obvious that our means are significantly different, we can do a two variable t-test to confirm this.
 
 ```{r echo=F}
 nbaMlsTtest = t.test(nbaScores, mlsScores)
 nbaMlsTtest
 ```
 
-The previous t-test suggests that NBA games have much higher scores than MLS games. If this is the case, then viewers of sports games may feel like points in MLS games are harder to obtain and therefore cheer longer. We will now compare the ranges of population means for Jazz games and RSL games that we derived with our t-tests. The low end of the Jazz scoring mean is `r nbaScoresTtest$conf.int[1]` and the high end of the mean for RSL is `r mlsScoresTtest$conf.int[2]`. We will create a ratio by dividing these by each other. This will show us the lowest ratio between our population means. We will also compute this ratio for the high end of the interval by using the upper bound of the Jazz means and the lower bound of the RSL mean. This will give us the maximum ratio between these two means.
+The previous t-test suggests that NBA games have much higher scores than MLS games. The p-value is orders of magnitude lower than .05. Because of this fans may feel like points in MLS games are harder to obtain and therefore cheer longer. We will now compare the ranges of population means for Jazz games and RSL games that we derived with our t-tests. 
+
+The low end of the Jazz scoring mean is `r nbaScoresTtest$conf.int[1]` and the high end of the mean for RSL is `r mlsScoresTtest$conf.int[2]`. We will create a ratio by dividing these by each other. This will show us the lowest ratio between our population means. We will also compute this ratio for the high end of the interval by using the upper bound of the Jazz means and the lower bound of the RSL mean. This will give us the maximum ratio between these two means.
 
 ```{r echo=F}
 lowRatio <- nbaScoresTtest$conf.int[1]/mlsScoresTtest$conf.int[2]
 highRatio <- nbaScoresTtest$conf.int[2]/mlsScoresTtest$conf.int[1]
 ```
 
-Here we have completed these computation and arrived at a ratio of `r lowRatio` for the lower bound and `r highRatio` for the higher bound. This means that one point scored by RSL is at least equivalent to `r lowRatio` Jazz points and at most equivalent to `r highRatio` Jazz points. These values will help give insight into why RSL fans cheer longer than Jazz fans.
+Completing these computation we have arrived at a ratio of `r lowRatio` for the lower bound and `r highRatio` for the higher bound. This means that we have decently strong evidence that on average one point scored by RSL is at least equivalent to `r lowRatio` Jazz points and at most equivalent to `r highRatio` Jazz points. This difference is much bigger than we had anticipated. This is partially due to MLS games ending with zero points. Sometimes games end with zero points between either team. The minimum score we recorded for a Jazz game was 78 points. This number is still 13 times higher than RSL's maximum score of 6.
 
 ## How Long Do RSL Fans Cheer Compared to Jazz Fans
 
