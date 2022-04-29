@@ -1,19 +1,18 @@
 ---
-title: "Why Do RSL Fans Cheer Longer Than Jazz Fans?"
-author: "Tom Coe, Joey Brignone, Darren Rou"
-date: "April 29, 2022"
-output:
-  slidy_presentation: default
-  ioslides_presentation: default
-  beamer_presentation: default
+title: "prez mark 2"
+date: '2022-04-29'
+authors: Tom Coe, Joey Brignone, Darren Rou
+output: 
+powerpoint_presentation:
+  always_allow_html: true
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
 library(kableExtra)
-library(dplyr)
 ```
 
 # Introduction
@@ -145,7 +144,7 @@ The previous t-test suggests that NBA games have much higher scores than MLS gam
 
 The low end of the Jazz scoring mean is `r nbaScoresTtest$conf.int[1]` and the high end of the mean for RSL is `r mlsScoresTtest$conf.int[2]`. We will create a ratio by dividing these by each other. This will show us the lowest ratio between our population means. We will also compute this ratio for the high end of the interval by using the upper bound of the Jazz means and the lower bound of the RSL mean. This will give us the maximum ratio between these two means.
 
-```{r}
+```{r, echo=FALSE}
 lowRatio <- nbaScoresTtest$conf.int[1]/mlsScoresTtest$conf.int[2]
 highRatio <- nbaScoresTtest$conf.int[2]/mlsScoresTtest$conf.int[1]
 ```
@@ -168,7 +167,7 @@ knitr::kable(head(jazzData),col.names=c('Opposing Team','Year','Game Time',
 
 The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is 'Celebration Time'. Here are some summary statistics for the celebration times:
 
-```{r}
+```{r, html}
 summary(jazzCelebrationTimes)
 ```
 
@@ -243,27 +242,6 @@ bothCelebrationTtest
 ```
 
 As we can see from the previous t-test, we can say with 95% confidence that the population means are not equal. The 95% confidence interval for this t-test is (`r bothCelebrationTtest$conf.int[1]`, `r bothCelebrationTtest$conf.int[2]`). This confidence interval says that on average, Jazz fans' celebration time are shorter than RSL fans' celebration time.
-
-# Linear Regression attempt
-
-I feel like this is the way to start it, but with the data we have, it doesn't seem too promising.
-
-<!-- ```{r} -->
-<!-- rslDatahome = rslData$Point.number %>% filter(grep1('home',location)) -->
-<!-- rslData$hometime = rslData$Celebration.Time %>% filter(grep1('home',location)) -->
-
-<!-- plot(rslhomepoints, rslhometime) -->
-<!-- plot((jazzData$Point.number/ nbaScoresMean), (jazzData$Celebration.Time/nbaScoresMean)) -->
-<!-- plot((jazzData$Celebration.Time/nbaScoresMean), (rslData$Celebration.Time/mlsScoresMean)) -->
-<!-- plot((rslData$Point.number/mlsScoresMean), (jazzData$Point.number/ nbaScoresMean)) -->
-
-<!-- cor.test((rslData$Point.number/mlsScoresMean), (rslData$Celebration.Time/mlsScoresMean)) -->
-<!-- cor.test((jazzData$Point.number/ nbaScoresMean), (jazzData$Celebration.Time/nbaScoresMean)) -->
-<!-- cor.test((jazzData$Celebration.Time/nbaScoresMean), (rslData$Celebration.Time/mlsScoresMean)) -->
-<!-- cor.test((rslData$Point.number/mlsScoresMean), (jazzData$Point.number/ nbaScoresMean)) -->
-
-<!-- ``` -->
-
 
 # Limitations
 
