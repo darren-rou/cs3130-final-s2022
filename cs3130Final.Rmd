@@ -53,7 +53,7 @@ calc1 = calc/(60/10)
 
 which evaluates to `r calc`. Considering that 60 is probably much higher than the true value, this value is not bad. For example, if instead the standard devation was a more reasonable value, say, around 10, then we would have gotten `r calc1` as our EBM.
 
-In other words, in a bad case (standard deviation of around 60 seconds), the width of our confidence interval will be about twice `r calc` or about 34. In a good case (standard deviation of about 10 seconds), the width of our confidence interval will be about twice `r calc` or about 5.7. Considering all of this, we will decide that a sample size of 50 (or greater) with our constructed 95% confidence interval is suitable for our experiment.
+In other words, in a bad case (standard deviation of around 60 seconds), the width of our confidence interval will be about twice `r calc` or about 34. In a good case (standard deviation of about 10 seconds), the width of our confidence interval will be about twice `r calc1` or about 5.7. Considering all of this, we will decide that a sample size of 50 (or greater) with our constructed 95% confidence interval is suitable for our experiment.
 
 # Analysis
 
