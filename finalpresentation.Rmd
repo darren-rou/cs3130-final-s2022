@@ -3,8 +3,8 @@ title: "Why Do RSL Fans Cheer Longer Than Jazz Fans?"
 author: "Tom Coe, Joey Brignone, Darren Rou"
 date: "April 29, 2022"
 output:
-  ioslides_presentation: default
   slidy_presentation: default
+  ioslides_presentation: default
   beamer_presentation: default
 ---
 
@@ -131,8 +131,6 @@ plot(mlsScoreRange,mlsScoreNormal,main="Histogram of total points (MLS) and Norm
 hist(mlsScores,breaks=-.5:8.5,freq=FALSE,add=TRUE, col = rgb(0,.278,.671,alpha=0.25))
 ```
 
-## RSL Scoring pt.2
-
 The previous histogram had a sample size of `r mlsScoresCount`. We find the sample mean to be `r mlsScoresMean`, and we find the sample standard deviation to be `r mlsScoresSd`. Compared to the sample mean, the sample standard deviation is quite large. The previous histograms shows that RSL scores approximately follow a normal distribution. Note that the data seems to be skewed left. We can use a t-test to find a confidence interval.
 
 ```{r echo=F}
@@ -151,9 +149,11 @@ nbaMlsTtest
 
 The previous t-test suggests that NBA games have much higher scores than MLS games. The p-value is orders of magnitude lower than .05. Because of this fans may feel like points in MLS games are harder to obtain and therefore cheer longer. We will now compare the ranges of population means for Jazz games and RSL games that we derived with our t-tests. 
 
+## Scoring Analysis Overview
+
 The low end of the Jazz scoring mean is `r nbaScoresTtest$conf.int[1]` and the high end of the mean for RSL is `r mlsScoresTtest$conf.int[2]`. We will create a ratio by dividing these by each other. This will show us the lowest ratio between our population means. We will also compute this ratio for the high end of the interval by using the upper bound of the Jazz means and the lower bound of the RSL mean. This will give us the maximum ratio between these two means.
 
-```{r echo=F}
+```{r}
 lowRatio <- nbaScoresTtest$conf.int[1]/mlsScoresTtest$conf.int[2]
 highRatio <- nbaScoresTtest$conf.int[2]/mlsScoresTtest$conf.int[1]
 ```
@@ -180,8 +180,6 @@ The table above shows the variables we tracked when watching Jazz games. The var
 summary(jazzCelebrationTimes)
 ```
 
-## How Long Do RSL Fans Cheer Compared to Jazz Fans pt. 2
-
 Next we will use this data and create a histogram.
 
 ```{r echo=F}
@@ -196,25 +194,8 @@ plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration T
 hist(jazzCelebrationTimes,breaks=6,freq=FALSE,add=TRUE, col = rgb(1,.85,0,alpha=0.25))
 ```
 
-```{r echo=F}
-rslData = read.csv("rslFanData.csv")
-rslCelebrationTimes = rslData$Celebration.Time
-
-knitr::kable(head(rslData),col.names=c('Opposing Team','Year','Game Time',
-                                       'Point #','Celebration Time','Location'),align = 'c') %>%
-  kable_styling(full_width = F)
-
-```
-
 
 Here we have created a histogram of our cheering data for Utah Jazz fans. We observe this follows close enough to a normal distribution to perform a t-test. Therefore, we will conduct a t-test with a 95% confidence interval to provide good evidence to the range of the population mean.
-
-Here are some summary statistics for RSL fans' celebration times:
-
-```{r}
-summary(rslCelebrationTimes)
-```
-
 
 ```{r echo=F}
 jazzCelebrationTtest <- t.test(jazzCelebrationTimes)
@@ -222,6 +203,8 @@ jazzCelebrationTtest
 ```
 
 From this t-test we have observed with 95% confidence the population mean will be within (`r jazzCelebrationTtest$conf.int[1]`, `r jazzCelebrationTtest$conf.int[2]`) seconds. Now we will do this same analysis on the RSL fan data.
+
+## How Long Do RSL Fans Cheer Compared to Jazz Fans pt. 2
 
 ```{r echo=F}
 rslData = read.csv("rslFanData.csv")
@@ -233,6 +216,7 @@ knitr::kable(head(rslData),col.names=c('Opposing Team','Year','Game Time',
 ```
 
 Just like the Jazz fan data we have tracked variables of opposing team, year, game time, point number, celebration time, and location. We will be focusing on the celebration time in this analysis. First we will calculate mean and standard deviation values. Then we will use these values to create a normal curve distribution and overlay this with a histogram from our data.
+
 
 ```{r echo=F}
 rslCelebrationCount = length(rslCelebrationTimes)
@@ -247,6 +231,13 @@ hist(rslCelebrationTimes,freq=FALSE,add=TRUE, col = rgb(0,.278,.671,alpha=0.25))
 ```
 
 The histogram of our RSL fan data seems to line up decently with a normal distribution. It is shifted a little to the left and has a couple outliers on the right side. This is probably due to some factors such as a game winning goal late into the game. Next, we will conduct a t-test with a 95% confidence interval as we have done with the Jazz fan data.
+
+Here are some summary statistics for RSL fans' celebration times:
+
+```{r}
+summary(rslCelebrationTimes)
+```
+
 
 ```{r echo=F}
 rslCelebrationTtest <- t.test(rslCelebrationTimes)
