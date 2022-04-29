@@ -248,21 +248,22 @@ As we can see from the previous t-test, we can say with 95% confidence that the 
 
 I feel like this is the way to start it, but with the data we have, it doesn't seem too promising.
 
-<!-- ```{r} -->
-<!-- rslDatahome = rslData$Point.number %>% filter(grep1('home',location)) -->
-<!-- rslData$hometime = rslData$Celebration.Time %>% filter(grep1('home',location)) -->
+```{r}
 
-<!-- plot(rslhomepoints, rslhometime) -->
-<!-- plot((jazzData$Point.number/ nbaScoresMean), (jazzData$Celebration.Time/nbaScoresMean)) -->
-<!-- plot((jazzData$Celebration.Time/nbaScoresMean), (rslData$Celebration.Time/mlsScoresMean)) -->
-<!-- plot((rslData$Point.number/mlsScoresMean), (jazzData$Point.number/ nbaScoresMean)) -->
+# rslDatahome = rslData$Point.number %>% filter(grep1('home',location))
+# rslData$hometime = rslData$Celebration.Time %>% filter(grep1('home',location))
+# 
+# plot(rslhomepoints, rslhometime)
+# plot((jazzData$Point.number/ nbaScoresMean), (jazzData$Celebration.Time/nbaScoresMean))
+# plot((jazzData$Celebration.Time/nbaScoresMean), (rslData$Celebration.Time/mlsScoresMean))
+# plot((rslData$Point.number/mlsScoresMean), (jazzData$Point.number/ nbaScoresMean))
+# 
+# cor.test((rslData$Point.number/mlsScoresMean), (rslData$Celebration.Time/mlsScoresMean))
+# cor.test((jazzData$Point.number/ nbaScoresMean), (jazzData$Celebration.Time/nbaScoresMean))
+# cor.test((jazzData$Celebration.Time/nbaScoresMean), (rslData$Celebration.Time/mlsScoresMean))
+# cor.test((rslData$Point.number/mlsScoresMean), (jazzData$Point.number/ nbaScoresMean))
 
-<!-- cor.test((rslData$Point.number/mlsScoresMean), (rslData$Celebration.Time/mlsScoresMean)) -->
-<!-- cor.test((jazzData$Point.number/ nbaScoresMean), (jazzData$Celebration.Time/nbaScoresMean)) -->
-<!-- cor.test((jazzData$Celebration.Time/nbaScoresMean), (rslData$Celebration.Time/mlsScoresMean)) -->
-<!-- cor.test((rslData$Point.number/mlsScoresMean), (jazzData$Point.number/ nbaScoresMean)) -->
-
-<!-- ``` -->
+```
 
 
 # Limitations
