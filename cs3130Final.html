@@ -623,8 +623,9 @@ play-in, and regular season games. We do so with the assumption that
 games scores do not depend on the type of game. This assumption is
 reasonable for our purposes. We are interested in the total points
 scored by the Utah Jazz each game.</p>
-<p>We repeat the same process of the RSL. We collect data about the
-total points scored each game.</p>
+<p>We repeat the same process of the RSL. Data is conveniently available
+from Google searches. We collect data about the total points scored each
+game.</p>
 </div>
 <div id="cheering-data" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Cheering Data</h2>
@@ -891,10 +892,13 @@ suitable.</p>
 115.83003). In terms of NBA scores, this interval is quite small. Our
 analysis shows that we have good evidence that the population mean of
 Jazz scores is within these bounds.</p>
-<p>Note that the data we obtained from nba.com is biased. We only
-sampled from the 2020-2021 season, and we only sampled from playoff
-games. But for our purposes, this biased sample should be
-sufficient.</p>
+<p>Note that we only sampled from the 2019–2020 and 2020–2021 seasons.
+It is reasonable to say that sample from these recent seasons may not be
+representative of the populations. However, sports fans may care more
+about the current state of their favorite teams rather than what their
+favorite team was like many years ago. Because of this using data from
+recent years can actually give more relevant results—as far as sports
+fans are concerned.</p>
 </div>
 <div id="rsl-point-analysis" class="section level3" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> RSL Point
@@ -1009,7 +1013,7 @@ left. We can use a t-test to find a confidence interval.</p>
 ##      1.43</code></pre>
 <p>Using a t-test, we find a 95% confidence interval of (1.1773481,
 1.6826519).</p>
-<p>As with the NBA case, our data for MLS scores may be biased, but it
+<p>As with the Jazz case, our data for RSL scores may be biased, but it
 should be sufficient for our purposes. Although it seems obvious that
 our means are significantly different, we can do a two variable t-test
 to confirm this.</p>
@@ -1561,8 +1565,45 @@ data from recent years is more relevant to most people—sports fans may
 not care too much about what happened decades ago, and they may be more
 interested in data from recent years.</p>
 </div>
-<div id="further-questions" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Further Questions</h1>
+<div id="conclusion" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Conclusion</h1>
+<p>In this study we have investigated the difference in points scored
+for RSL and Utah Jazz teams. Our hypothesis was that this increase in
+score was significant and that in turn RSL fans cheered longer than Jazz
+fans. We found decently strong evidence that 1 RSL point is worth 66.7 -
+98.4 Utah Jazz points. This is a huge discrepancy. Meanwhile, we found
+decently strong evidence that RSL fans cheer 6.3 to 10.4 times longer
+than Jazz fans. This makes sense because essentially for every goal the
+RSL scores this is equivalent to 67-98 point in a Jazz game. If anything
+it seems RSL fans should be cheering even longer, but there are other
+limitations like vocal cords giving out and play resuming.</p>
+<p>We also found a few other interesting variables that affect cheering
+during our analysis. The first being point number. You would assume that
+the longer the game goes on and point number increases that the fans
+would start to cheer longer. According to our analysis there wasn’t much
+evidence to show this. At best in Jazz games there is a very weak
+correlation between cheering time and point number. Our RSL analysis
+showed no correlation. If anything RSL fans cheered the most for the
+second goal. This is potentially the most significant goal in a soccer
+match.</p>
+<p>Lastly, we looked at how being a home game and away game affected
+cheering time. We found this to be pretty substantial. The mean cheering
+time for Utah Jazz fans at an away game was only 3.27 seconds on average
+for our sample, but for a home game was 6.94 seconds. This is more than
+double our sample mean for the away game cheering time. Similarly, in
+RSL games we investigated this issue. We found that the fans cheered
+49.1 seconds on average during a home game when a point was scored. This
+is 17.2 seconds higher than the our sample mean of the away games at
+31.8 seconds.</p>
+<p>In conclusion RSL fans cheer longer than Jazz fans. This is due to
+many factors. The two most significant factors we found in cheering time
+were total points scored and whether the team was playing at home or
+away. Point number did not seem to have much correlation with cheering
+time in RSL games and maybe has a very weak correlation in Jazz
+games.</p>
+<div id="further-questions" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Further
+Questions</h2>
 <p>This study on sport fans has many further questions to be answered.
 In our question, we analyzed how the points and cheering/celebration
 time affected each other, as well as some other variables such as where
@@ -1598,42 +1639,6 @@ each team’s fan base. This method of fan base comparison is occasionally
 used during “Battle of the Bands” competitions to determine the winner
 out of the selected top groups.</p>
 </div>
-<div id="conclusion" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Conclusion</h1>
-<p>In this study we have investigated the difference in points scored
-for RSL and Utah Jazz teams. Our hypothesis was that this increase in
-score was significant and that in turn RSL fans cheered longer than Jazz
-fans. We found decently strong evidence that 1 RSL point is worth 66.7 -
-98.4 Utah Jazz points. This is a huge discrepancy. Meanwhile, we found
-decently strong evidence that RSL fans cheer 6.3 to 10.4 times longer
-than Jazz fans. This makes sense because essentially for every goal the
-RSL scores this is equivalent to 67-98 point in a Jazz game. If anything
-it seems RSL fans should be cheering even longer, but there are other
-limitations like vocal cords giving out and play resuming.</p>
-<p>We also found a few other interesting variables that affect cheering
-during our analysis. The first being point number. You would assume that
-the longer the game goes on and point number increases that the fans
-would start to cheer longer. According to our analysis there wasn’t much
-evidence to show this. At best in Jazz games there is a very weak
-correlation between cheering time and point number. Our RSL analysis
-showed no correlation. If anything RSL fans cheered the most for the
-second goal. This is potentially the most significant goal in a soccer
-match.</p>
-<p>Lastly, we looked at how being a home game and away game affected
-cheering time. We found this to be pretty substantial. The mean cheering
-time for Utah Jazz fans at an away game was only 3.27 seconds on average
-for our sample, but for a home game was 6.94 seconds. This is more than
-double our sample mean for the away game cheering time. Similarly, in
-RSL games we investigated this issue. We found that the fans cheered
-49.1 seconds on average during a home game when a point was scored. This
-is 17.2 seconds higher than the our sample mean of the away games at
-31.8 seconds.</p>
-<p>In conclusion RSL fans cheer longer than Jazz fans. This is due to
-many factors. The two most significant factors we found in cheering time
-were total points scored and whether the team was playing at home or
-away. Point number did not seem to have much correlation with cheering
-time in RSL games and maybe has a very weak correlation in Jazz
-games.</p>
 </div>
 
 
