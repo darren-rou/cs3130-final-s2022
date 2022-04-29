@@ -492,7 +492,7 @@ RSL
 ##  114.0432    1.4300</code></pre>
 <p>The previous t-test suggests that NBA games have much higher scores than MLS games. The p-value is orders of magnitude lower than .05. Because of this fans may feel like points in MLS games are harder to obtain and therefore cheer longer. We will now compare the ranges of population means for Jazz games and RSL games that we derived with our t-tests.</p>
 <p>The low end of the Jazz scoring mean is 112.2563898 and the high end of the mean for RSL is 1.6826519. We will create a ratio by dividing these by each other. This will show us the lowest ratio between our population means. We will also compute this ratio for the high end of the interval by using the upper bound of the Jazz means and the lower bound of the RSL mean. This will give us the maximum ratio between these two means.</p>
-<p>Completing these computation we have arrived at a ratio of 66.71397 for the lower bound and 98.3821455 for the higher bound. This means that we have decently strong evidence that on average one point scored by RSL is at least equivalent to 66.71397 Jazz points and at most equivalent to 98.3821455 Jazz points. This difference is much bigger than we had anticipated. This is partially due to MLS games ending with zero points. Sometimes games end with zero points between either team. The minimum score we recorded for a Jazz game was 78 points. This number is still 13 times higher than RSL’s maximum score of 6.</p>
+<p>After these calculation we arrived at a ratio of 66.71397 for the lower bound and 98.3821455 for the higher bound. This means that we have decently strong evidence that on average one point scored by RSL is at least equivalent to 66.71397 Jazz points and at most equivalent to 98.3821455 Jazz points. This difference is much bigger than we had anticipated. This is partially due to MLS games ending with zero points. Sometimes games end with zero points between either team. The minimum score we recorded for a Jazz game was 78 points. This number is still 13 times higher than RSL’s maximum score of 6.</p>
 </div>
 </div>
 <div id="how-long-do-rsl-fans-cheer-compared-to-jazz-fans" class="section level2" number="4.2">
@@ -840,13 +840,8 @@ away
 ## sample estimates:
 ## mean of x mean of y 
 ##    5.1078   41.1288</code></pre>
-<p>As we can see from the previous t-test, our p-value is much lower than .05. We believe this is very strong evidence that the population means are significantly different. The 95% confidence interval for this t-test is (-40.7576978, -31.2843022). This confidence interval says that on average, Jazz fans’ celebration time are shorter than RSL fans’ celebration time.</p>
-<pre class="r"><code>RatioScoresmean &lt;- nbaScoresMean/mlsScoresMean
-Ratiocelebrationmean &lt;- rslCelebrationMean/jazzCelebrationMean
-Ratiorsl &lt;- rslCelebrationMean/mlsScoresMean    # Not sure if these two are valuable
-Ratiojazz &lt;- nbaScoresMean/jazzCelebrationMean  # but I want to believe they could be</code></pre>
-<p>If we take the ratio of each team’s estimated mean celebration time and compare it to each team’s estimated mean score per game, we can approximate a value of each cheer. The first ratio from the scoring shows that approximately 1 point for every RSL score is equal to 79.7504964 points for every Jazz score. This estimate can not accurately be placed upon MLS vs NBA since we only used RSL and Jazz data. Comparing the cheering of RSL fans to that of Jazz fans, we are fairly confident in saying that RSL fans cheer 8.0521555 seconds for every 1 second Jazz fans cheer.</p>
-<p>To compare them more to each other, we compared each team’s celebration to their estimated mean score. The ratios found for the two turned out to be 22.3272661 for the Jazz and 28.7613986 for RSL. These ratios could give value to the consistency of cheering that actually goes on. with that…(wrap up from here)</p>
+<p>As we can see from the previous t-test, our p-value is much lower than .05. We believe this is very strong evidence that the population means are significantly different. The 95% confidence interval for this t-test is (-40.7576978, -31.2843022). This confidence interval says that on average, Jazz fans’ celebration time are shorter than RSL fans’ celebration time. Using this data we can create a ratio of how long Jazz fans cheer versus RSL fans. This is similar to what we did with the point analysis.</p>
+<p>After these calculation we arrived at a ratio of 6.2823644 for the lower bound and 10.3768481 for the higher bound. This means that we have decently strong evidence that on average RSL fans cheer 6.2823644 times longer and at most 10.3768481 times longer when RSL scores a point.</p>
 </div>
 </div>
 </div>

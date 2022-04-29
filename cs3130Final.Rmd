@@ -154,7 +154,7 @@ lowRatio <- nbaScoresTtest$conf.int[1]/mlsScoresTtest$conf.int[2]
 highRatio <- nbaScoresTtest$conf.int[2]/mlsScoresTtest$conf.int[1]
 ```
 
-Completing these computation we have arrived at a ratio of `r lowRatio` for the lower bound and `r highRatio` for the higher bound. This means that we have decently strong evidence that on average one point scored by RSL is at least equivalent to `r lowRatio` Jazz points and at most equivalent to `r highRatio` Jazz points. This difference is much bigger than we had anticipated. This is partially due to MLS games ending with zero points. Sometimes games end with zero points between either team. The minimum score we recorded for a Jazz game was 78 points. This number is still 13 times higher than RSL's maximum score of 6.
+After these calculation we arrived at a ratio of `r lowRatio` for the lower bound and `r highRatio` for the higher bound. This means that we have decently strong evidence that on average one point scored by RSL is at least equivalent to `r lowRatio` Jazz points and at most equivalent to `r highRatio` Jazz points. This difference is much bigger than we had anticipated. This is partially due to MLS games ending with zero points. Sometimes games end with zero points between either team. The minimum score we recorded for a Jazz game was 78 points. This number is still 13 times higher than RSL's maximum score of 6.
 
 ## How Long Do RSL Fans Cheer Compared to Jazz Fans
 
@@ -183,11 +183,11 @@ Next we will use this data and create a histogram.
 ```{r echo=F}
 jazzCelebrationCount = length(jazzCelebrationTimes)
 jazzCelebrationMean = mean(jazzCelebrationTimes)
-jazzCelebreationSd = sd(jazzCelebrationTimes)
+jazzCelebrationSd = sd(jazzCelebrationTimes)
 
 jazzCelebrationBreaks = c(min(jazzCelebrationTimes):max(jazzCelebrationTimes))
 jazzCelebrationRange <- c(0:12)
-jazzCelebrationNormal <- dnorm(jazzCelebrationRange,mean=jazzCelebrationMean,sd=jazzCelebreationSd)
+jazzCelebrationNormal <- dnorm(jazzCelebrationRange,mean=jazzCelebrationMean,sd=jazzCelebrationSd)
 plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration Time (Jazz) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density', col = rgb(0,0,.502))
 hist(jazzCelebrationTimes,breaks=6,freq=FALSE,add=TRUE, col = rgb(1,.85,0,alpha=0.25))
 ```
@@ -217,11 +217,11 @@ Just like the Jazz fan data we have tracked variables of opposing team, year, ga
 ```{r echo=F}
 rslCelebrationCount = length(rslCelebrationTimes)
 rslCelebrationMean = mean(rslCelebrationTimes)
-rslCelebreationSd = sd(rslCelebrationTimes)
+rslCelebrationSd = sd(rslCelebrationTimes)
 
 rslCelebrationBreaks = c(min(rslCelebrationTimes):max(rslCelebrationTimes))
 rslCelebrationRange <- c(10:100)
-rslCelebrationNormal <- dnorm(rslCelebrationRange,mean=rslCelebrationMean,sd=rslCelebreationSd)
+rslCelebrationNormal <- dnorm(rslCelebrationRange,mean=rslCelebrationMean,sd=rslCelebrationSd)
 plot(rslCelebrationRange,rslCelebrationNormal,main="Histogram of Celebration Time (RSL) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density', col = 'red')
 hist(rslCelebrationTimes,freq=FALSE,add=TRUE, col = rgb(0,.278,.671,alpha=0.25))
 ```
@@ -240,19 +240,14 @@ bothCelebrationTtest <- t.test(jazzCelebrationTimes, rslCelebrationTimes)
 bothCelebrationTtest
 ```
 
-As we can see from the previous t-test, our p-value is much lower than .05. We believe this is very strong evidence that the population means are significantly different. The 95% confidence interval for this t-test is (`r bothCelebrationTtest$conf.int[1]`, `r bothCelebrationTtest$conf.int[2]`). This confidence interval says that on average, Jazz fans' celebration time are shorter than RSL fans' celebration time.
+As we can see from the previous t-test, our p-value is much lower than .05. We believe this is very strong evidence that the population means are significantly different. The 95% confidence interval for this t-test is (`r bothCelebrationTtest$conf.int[1]`, `r bothCelebrationTtest$conf.int[2]`). This confidence interval says that on average, Jazz fans' celebration time are shorter than RSL fans' celebration time. Using this data we can create a ratio of how long Jazz fans cheer versus RSL fans. This is similar to what we did with the point analysis.
 
-```{r}
-RatioScoresmean <- nbaScoresMean/mlsScoresMean
-Ratiocelebrationmean <- rslCelebrationMean/jazzCelebrationMean
-Ratiorsl <- rslCelebrationMean/mlsScoresMean    # Not sure if these two are valuable
-Ratiojazz <- nbaScoresMean/jazzCelebrationMean  # but I want to believe they could be
+```{r echo=F}
+lowRatioCheer <- rslCelebrationTtest$conf.int[1]/jazzCelebrationTtest$conf.int[2]
+highRatioCheer <- rslCelebrationTtest$conf.int[2]/jazzCelebrationTtest$conf.int[1]
 ```
 
-If we take the ratio of each team's estimated mean celebration time and compare it to each team's estimated mean score per game, we can approximate a value of each cheer. The first ratio from the scoring shows that approximately 1 point for every RSL score is equal to `r RatioScoresmean` points for every Jazz score. This estimate can not accurately be placed upon MLS vs NBA since we only used RSL and Jazz data. Comparing the cheering of RSL fans to that of Jazz fans, we are fairly confident in saying that RSL fans cheer `r Ratiocelebrationmean` seconds for every 1 second Jazz fans cheer.
-
-To compare them more to each other, we compared each team's celebration to their estimated mean score. The ratios found for the two turned out to be `r Ratiojazz` for the Jazz and `r Ratiorsl` for RSL. These ratios could give value to the consistency of cheering that actually goes on. with that...(wrap up from here)
-
+After these calculation we arrived at a ratio of `r lowRatioCheer` for the lower bound and `r highRatioCheer` for the higher bound. This means that we have decently strong evidence that on average RSL fans cheer `r lowRatioCheer` times longer and at most `r highRatioCheer` times longer when RSL scores a point.
 
 # Limitations
 
