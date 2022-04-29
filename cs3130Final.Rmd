@@ -256,13 +256,17 @@ After these calculation we arrived at a ratio of `r lowRatioCheer` for the lower
 From our analysis we have asked ourselves if the point number is directly correlated with the amount of cheering. Meaning do fans cheer longer for points towards the end of the game. To investigate further we compared the point number to the cheering time of both Jazz and RSL fans.
 
 ```{r}
-pairs(jazzData[,4:5])
+pairs(jazzData[,4:5],main = "Jazz Point # vs Celebration Time")
 ```
+
+
 Seen above are the `Point #` versus `Celebration Time` scatter plots for the Jazz fan data. We see there could be a very weak correlation, but point number seems to have little to no influence on celebration time.
 
 ```{r}
-pairs(rslData[,4:5])
+pairs(rslData[,4:5],main = "RSL Point # vs Celebration Time")
 ```
+
+
 Above we performed the same analysis for the RSL fan data. Here we see slightly elevated cheering times for the second point scored. Perhaps this is because this point is the most influential in RSL games, but there doesn't seem to be any meaningful correlations between point number and celebration time for RSL fans.
 
 ### Investigating Home Versus Away Games
