@@ -1,0 +1,275 @@
+---
+title: "Why Do RSL Fans Cheer Longer Than Jazz Fans?"
+author: "Tom Coe, Joey Brignone, Darren Rou"
+date: "April 29, 2022"
+output:
+  ioslides_presentation: default
+  slidy_presentation: default
+  beamer_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(kableExtra)
+colors(distinct = TRUE)
+```
+
+# Introduction
+
+## Introduction
+
+If you've ever been to a MLS game you know the crowd goes crazy when their team scores a goal. In comparison at an NBA game the crowd cheers, but without the same amount of enthusiasm. This study aims to look into this phenomenon and see if we can find important factors that contribute to this. The hypothesis of this study is that the amount of time a crowd cheers is dependent on the number of points scored per game. To investigate this question we will look at Utah's professional soccer and basketball teams Real Salt Lake (RSL) and the Utah Jazz. First we will collect data on the total points scored for these teams. Then, we will collect data on how long each team's respective crowd cheers when they score a point. We will then compare these values and see if there is any connection between them. 
+
+# Data Discovery
+
+## Scoring Data
+
+[nba.com](https://www.nba.com/stats/teams/boxscores/?Season=2020-21&SeasonType=Regular%20Season&CF=TEAM_NAME*E*Utah%20Jazz) provides scoring data for NBA teams. This website allows filtering of data by team, season, and the type of game (regular, playoffs, etc.). We note that there aren't many playoff games for the Jazz. With this taken into consideration, we choose to take all scoring data from playoff, play-in, and regular season games. We do so with the assumption that games scores do not depend on the type of game. This assumption is reasonable for our purposes. We are interested in the total points scored by the Utah Jazz each game.
+
+We repeat the same process of the RSL. We collect data about the total points scored each game.
+
+## Cheering Data
+
+To collect data, we watched RSL and Jazz games and observed the crowd when there was an instance of scoring. Then, using a stopwatch we timed the duration of the crowd's cheering. For the basketball games this was simple as there are no cuts in the video feed, but for soccer game this was a little harder. Since there is a delay in game play after a goal is scored in soccer the broadcasting network cuts away from the live feed and shows instant replays. These replays, however, still have live audio from the commentators and the crowd can still be heard. Thus, to gather data for the celebration time we focused on listening to the crowd during the replays and did our best to estimate when the crowd had stopped cheering. The act of timing the crowd's reaction introduces error in itself, but the added difficulty of not having a single continuous video feed made accurate data collection even more difficult. 
+
+
+# Methodology
+
+## Methodology
+
+After data collection, we were given many measurements to choose from. The first population sample we wish to evaluate will be the scores per game. In order to adequately answer our question we will first analyze how much one point in soccer is compared to one point in basketball. We will need to take the scoring data collected and compare the means of each data set. To do this we will assume these data sets follow a normal distribution and will use t-tests to construct confidence intervals to approximate the value of the population means. Since we are fairly confident in our data, yet we recognize possible biases that are present, we will be using a confidence interval of 95%. Through this t-test of 95% confidence, we can find a range for the population mean for the scores per game of RSL and of the Jazz.
+
+Next, we wish to use this information to see why RSL fans cheer longer than Jazz Fans. From our data sets, we will take the sample of cheer time per point, plot a histogram and normal curve, and analyze our results. This should prepare us to run another t-test of this sample, to find a range wherein lies the population mean. For consistency, we will use the 95% confidence interval from before. Once both t-tests are run for both cheer time data sets, we may start to draw conclusions from our results.
+
+One experimental parameter is this important is the sample size. It is conventional to have a sample size of 30 or greater. We will consider the t-scores which arises from using a sample size of 50. For sample size of 50 and a 95% confidence interval. The result is `r qt(0.975, df=49)`. This is a good value for our experiment. This number means we have a 95% chance, that our sample mean will be within about 2 standard deviations of the true population mean.
+
+We will now consider what 2 t-scores means in terms of fans' celebration time. We will use external knowledge of sports games. Using our knowledge of sports games, we can say that the standard deviation of fans' celebration times is probably much lower than 60 seconds. We will use 60 seconds as the standard deviation as a worse case scenario. In terms of a t-score of 2, we have an estimated EBM of
+
+$$
+2 \frac{60}{\sqrt{50}}
+$$
+```{r, echo=FALSE}
+calc = 2*60/sqrt(50)
+calc1 = calc/(60/10)
+```
+
+which evaluates to `r calc`. Considering that 60 is probably much higher than the true value, this value is not bad. For example, if instead the standard deviation was a more reasonable value, say, around 10, then we would have gotten `r calc1` as our EBM.
+
+In other words, in a bad case (standard deviation of around 60 seconds), the width of our confidence interval will be about twice `r calc` or about 34 seconds. In a good case (standard deviation of about 10 seconds), the width of our confidence interval will be about twice `r calc1` or about 5.7 seconds. Considering all of this, we will decide that a sample size of 50 (or greater) with our constructed 95% confidence interval is suitable for our experiment.
+
+# Analysis
+
+## One Point In Soccer Is Worth X Points In Baseketball
+
+We consider the total points scored by the Jazz each game in the 2019--2020 and 2020--2021 seasons. We put this data into a `.csv` file, and using the `head()` function, we can create a table to see what it looks like:
+
+```{r echo=F}
+nbaPreliminaryData = read.csv("jazzScores.csv") # data from nba.com
+knitr::kable(head(nbaPreliminaryData[,0:6]),align='c',
+             col.names=c('Team','Match Up','Game Date','W/L','Min','Points')) %>%
+  kable_styling(full_width = F)
+```
+
+As we can see, the `Points` column corresponds to total points scored by the Jazz during a game.
+
+## Jazz Scoring
+
+The population we would like to consider consists of all points scored by the Jazz in a game. Our sample (shown earlier) represents only a small portion of the population, but it is sufficient for the motivation for this study. We will now do some basic analysis on the data.
+
+```{r echo=F}
+nbaScores = nbaPreliminaryData$PTS
+nbaScoresCount = length(nbaScores) # sample size
+nbaScoresMean = mean(nbaScores) # sample mean
+nbaScoresSd = sd(nbaScores) # sample standard deviation
+summary(nbaScores)
+
+nbaScoresRange <- min(nbaScores):max(nbaScores)
+nbaScoresNormal <- dnorm(nbaScoresRange,mean=nbaScoresMean,sd=nbaScoresSd)
+plot(nbaScoresRange,nbaScoresNormal,main="Histogram of total points (NBA) and Normal Curve",
+     xlab="Total points scored by a team in a game",ylab = 'Density', col = rgb(0,0,.502))
+hist(nbaScores,freq=FALSE,add=TRUE, col = rgb(1,.85,0,alpha=0.25))
+
+```
+
+The previous histogram had a sample size of `r nbaScoresCount`. We find the sample mean to be `r nbaScoresMean` and the sample standard deviation to be `r nbaScoresSd`. As shown by the previous histogram, the data is approximately normal, and using a t-distribution for analysis is suitable.
+
+```{r echo=F}
+nbaScoresTtest = t.test(nbaScores)
+nbaScoresTtest
+```
+
+The previous t-test gives a 95% confidence interval of (`r nbaScoresTtest$conf.int[1]`, `r nbaScoresTtest$conf.int[2]`). In terms of NBA scores, this interval is quite small. Our sample suggests the mean points scored by a team in an NBA points in this interval with 95% confidence.
+
+Note that the data we obtained from nba.com is biased. We only sampled from the 2020-2021 season, and we only sampled from playoff games. But for our purposes, this biased sample should be sufficient.
+
+## RSL Scoring
+
+Now, we consider data for the MLS.  Similar to our NBA analysis, we want to consider the total points scored by the RSL in a game.
+
+```{r echo=F}
+mlsPreliminaryData = read.csv("rslScores.csv")
+knitr::kable(head(mlsPreliminaryData),col.names=c('Team','Final Score','Year'),align='c') %>%
+  kable_styling(full_width = F)
+```
+
+Above is a table representing the data retrieved from kaggle.com. The column we are interested in for our study's purposes is the `Final Score`.
+
+Similar to before, let $Y$ be the total number of points scored by a team in an MLS game.
+
+```{r echo=F}
+mlsScores = mlsPreliminaryData$Final.Score
+mlsScoresCount = length(mlsScores)
+mlsScoresMean = mean(mlsScores)
+mlsScoresSd = sd(mlsScores)
+
+mlsScoreRange <- c(min(mlsScores):(2*max(mlsScores)))/2
+mlsScoreNormal <- dnorm(mlsScoreRange,mean=mlsScoresMean,sd=mlsScoresSd)
+plot(mlsScoreRange,mlsScoreNormal,main="Histogram of total points (MLS) and Normal Curve",
+     xlab="Total points scored by a team in a game",ylab = 'Density', col = 'red')
+hist(mlsScores,breaks=-.5:8.5,freq=FALSE,add=TRUE, col = rgb(0,.278,.671,alpha=0.25))
+```
+
+## RSL Scoring pt.2
+
+The previous histogram had a sample size of `r mlsScoresCount`. We find the sample mean to be `r mlsScoresMean`, and we find the sample standard deviation to be `r mlsScoresSd`. Compared to the sample mean, the sample standard deviation is quite large. The previous histograms shows that RSL scores approximately follow a normal distribution. Note that the data seems to be skewed left. We can use a t-test to find a confidence interval.
+
+```{r echo=F}
+mlsScoresTtest = t.test(mlsScores)
+mlsScoresTtest
+```
+
+Using a t-test, we find a 95% confidence interval of (`r mlsScoresTtest$conf.int[1]`, `r mlsScoresTtest$conf.int[2]`).
+
+As with the NBA case, our data for MLS scores may be biased, but it should be sufficient for our purposes. Although it seems obvious that our means are significantly different, we can do a two variable t-test to confirm this.
+
+```{r echo=F}
+nbaMlsTtest = t.test(nbaScores, mlsScores)
+nbaMlsTtest
+```
+
+The previous t-test suggests that NBA games have much higher scores than MLS games. The p-value is orders of magnitude lower than .05. Because of this fans may feel like points in MLS games are harder to obtain and therefore cheer longer. We will now compare the ranges of population means for Jazz games and RSL games that we derived with our t-tests. 
+
+The low end of the Jazz scoring mean is `r nbaScoresTtest$conf.int[1]` and the high end of the mean for RSL is `r mlsScoresTtest$conf.int[2]`. We will create a ratio by dividing these by each other. This will show us the lowest ratio between our population means. We will also compute this ratio for the high end of the interval by using the upper bound of the Jazz means and the lower bound of the RSL mean. This will give us the maximum ratio between these two means.
+
+```{r echo=F}
+lowRatio <- nbaScoresTtest$conf.int[1]/mlsScoresTtest$conf.int[2]
+highRatio <- nbaScoresTtest$conf.int[2]/mlsScoresTtest$conf.int[1]
+```
+
+Completing these computation we have arrived at a ratio of `r lowRatio` for the lower bound and `r highRatio` for the higher bound. This means that we have decently strong evidence that on average one point scored by RSL is at least equivalent to `r lowRatio` Jazz points and at most equivalent to `r highRatio` Jazz points. This difference is much bigger than we had anticipated. This is partially due to MLS games ending with zero points. Sometimes games end with zero points between either team. The minimum score we recorded for a Jazz game was 78 points. This number is still 13 times higher than RSL's maximum score of 6.
+
+## How Long Do RSL Fans Cheer Compared to Jazz Fans
+
+First we will take the data we collected and compute the mean values for each. Similar to what we did in the previous section for the scoring data.
+
+```{r echo=F}
+# import cheering data
+jazzData = read.csv("jazzFanData.csv")
+jazzCelebrationTimes = jazzData$Celebration.Time
+
+knitr::kable(head(jazzData),col.names=c('Opposing Team','Year','Game Time',
+                                        'Point #', 'Celebration  Time','Location'),align='c') %>%
+  kable_styling(full_width = F)
+```
+
+The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is 'Celebration Time'. Here are some summary statistics for the celebration times:
+
+```{r}
+summary(jazzCelebrationTimes)
+```
+
+## How Long Do RSL Fans Cheer Compared to Jazz Fans pt. 2
+
+Next we will use this data and create a histogram.
+
+```{r echo=F}
+jazzCelebrationCount = length(jazzCelebrationTimes)
+jazzCelebrationMean = mean(jazzCelebrationTimes)
+jazzCelebreationSd = sd(jazzCelebrationTimes)
+
+jazzCelebrationBreaks = c(min(jazzCelebrationTimes):max(jazzCelebrationTimes))
+jazzCelebrationRange <- c(0:12)
+jazzCelebrationNormal <- dnorm(jazzCelebrationRange,mean=jazzCelebrationMean,sd=jazzCelebreationSd)
+plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration Time (Jazz) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density', col = rgb(0,0,.502))
+hist(jazzCelebrationTimes,breaks=6,freq=FALSE,add=TRUE, col = rgb(1,.85,0,alpha=0.25))
+```
+
+```{r echo=F}
+rslData = read.csv("rslFanData.csv")
+rslCelebrationTimes = rslData$Celebration.Time
+
+knitr::kable(head(rslData),col.names=c('Opposing Team','Year','Game Time',
+                                       'Point #','Celebration Time','Location'),align = 'c') %>%
+  kable_styling(full_width = F)
+
+```
+
+
+Here we have created a histogram of our cheering data for Utah Jazz fans. We observe this follows close enough to a normal distribution to perform a t-test. Therefore, we will conduct a t-test with a 95% confidence interval to provide good evidence to the range of the population mean.
+
+Here are some summary statistics for RSL fans' celebration times:
+
+```{r}
+summary(rslCelebrationTimes)
+```
+
+
+```{r echo=F}
+jazzCelebrationTtest <- t.test(jazzCelebrationTimes)
+jazzCelebrationTtest
+```
+
+From this t-test we have observed with 95% confidence the population mean will be within (`r jazzCelebrationTtest$conf.int[1]`, `r jazzCelebrationTtest$conf.int[2]`) seconds. Now we will do this same analysis on the RSL fan data.
+
+```{r echo=F}
+rslData = read.csv("rslFanData.csv")
+rslCelebrationTimes = rslData$Celebration.Time
+
+knitr::kable(head(rslData),col.names=c('Opposing Team','Year','Game Time',
+                                        'Point #', 'Celebration  Time','Location'),align='c') %>%
+  kable_styling(full_width = F)
+```
+
+Just like the Jazz fan data we have tracked variables of opposing team, year, game time, point number, celebration time, and location. We will be focusing on the celebration time in this analysis. First we will calculate mean and standard deviation values. Then we will use these values to create a normal curve distribution and overlay this with a histogram from our data.
+
+```{r echo=F}
+rslCelebrationCount = length(rslCelebrationTimes)
+rslCelebrationMean = mean(rslCelebrationTimes)
+rslCelebreationSd = sd(rslCelebrationTimes)
+
+rslCelebrationBreaks = c(min(rslCelebrationTimes):max(rslCelebrationTimes))
+rslCelebrationRange <- c(10:100)
+rslCelebrationNormal <- dnorm(rslCelebrationRange,mean=rslCelebrationMean,sd=rslCelebreationSd)
+plot(rslCelebrationRange,rslCelebrationNormal,main="Histogram of Celebration Time (RSL) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density', col = 'red')
+hist(rslCelebrationTimes,freq=FALSE,add=TRUE, col = rgb(0,.278,.671,alpha=0.25))
+```
+
+The histogram of our RSL fan data seems to line up decently with a normal distribution. It is shifted a little to the left and has a couple outliers on the right side. This is probably due to some factors such as a game winning goal late into the game. Next, we will conduct a t-test with a 95% confidence interval as we have done with the Jazz fan data.
+
+```{r echo=F}
+rslCelebrationTtest <- t.test(rslCelebrationTimes)
+rslCelebrationTtest
+```
+From this t-test we have observed with 95% confidence the population mean will be within (`r rslCelebrationTtest$conf.int[1]`, `r rslCelebrationTtest$conf.int[2]`) seconds.
+
+Next, we will perform a two-variable t-test using a 95% confidence level to determine if there is a difference bewtween Jazz fans' celebration times and RSL fans' celebration times.
+```{r echo=F}
+bothCelebrationTtest <- t.test(jazzCelebrationTimes, rslCelebrationTimes)
+bothCelebrationTtest
+```
+
+As we can see from the previous t-test, we can say with 95% confidence that the population means are not equal. The 95% confidence interval for this t-test is (`r bothCelebrationTtest$conf.int[1]`, `r bothCelebrationTtest$conf.int[2]`). This confidence interval says that on average, Jazz fans' celebration time are shorter than RSL fans' celebration time.
+
+# Limitations
+
+## Limitations
+
+As discussed earlier, the data we have gathered is probably not totally random. However, it is possible that the data we have good is somewhat good at representing the underlying populations. We tried to get random data as much as possible, but we ran into issues such as sports games being unavailable for viewing. To alleviate these problems, we gathered data from different games. Additionally, our large sample size of `r jazzCelebrationCount` for both Jazz and RSL helped make the data more representative.
+
+There is also the matter of data. All our data come from sports games which have taken place in the past few years. In the context of our question, it could be argued that gathering data from a wide range of years may have been better. However, it is also reasonable to say that data from recent years is more relevant to most people---sports fans may not care too much about what happened decades ago, and they may be more interested in data from recent years.
+
+# Conclusion
+
+## Conclusion
