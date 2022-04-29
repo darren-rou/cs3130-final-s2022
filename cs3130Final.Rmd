@@ -253,7 +253,7 @@ After these calculation we arrived at a ratio of `r lowRatioCheer` for the lower
 
 ### Investigating Point Number Coorelations
 
-From our analysis we have asked ourselves if the point number is directly correlated with the amount of cheering. Meaning do fans cheer longer for points towards the end of the game. To investigate further we compared the point number to the cheering time of both Jazz and RSL fans.
+From our analysis we have asked ourselves if the point number is directly correlated with the amount of cheering, meaning do fans cheer longer for points towards the end of the game. To investigate further we compared the point number to the cheering time of both Jazz and RSL fans.
 
 ```{r}
 pairs(jazzData[,4:5])
