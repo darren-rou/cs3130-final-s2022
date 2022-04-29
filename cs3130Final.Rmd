@@ -57,9 +57,13 @@ In other words, in a bad case (standard deviation of around 60 seconds), the wid
 
 # Analysis
 
+<<<<<<< Updated upstream
 ## One Point In Soccer Is Worth X Points In Basketball
+=======
+## One RSL Point Is Worth X Utah Jazz Points
+>>>>>>> Stashed changes
 
-We consider the total points scored by the Jazz each game in the 2019--2020 and 2020--2021 seasons. We put this data into a `.csv` file, and using the `head()` function, we can create a table to see what it looks like:
+One RSL point is worth how many Utah Jazz points? To answer this question, we start  consider the total points scored by the Jazz each game in the 2019--2020 and 2020--2021 seasons. We put this data into a `.csv` file, and using the `head()` function, we can create a table to see what it looks like:
 
 ```{r echo=F}
 nbaPreliminaryData = read.csv("jazzScores.csv") # data from nba.com
@@ -242,13 +246,13 @@ rslCelebrationTtest
 ```
 From this t-test we have observed with 95% confidence the population mean will be within (`r rslCelebrationTtest$conf.int[1]`, `r rslCelebrationTtest$conf.int[2]`) seconds.
 
-Next, we will perform a two-variable t-test using a 95% confidence level to determine if there is a difference bewtween Jazz fans' celebration times and RSL fans' celebration times.
+Next, we will perform a two-variable t-test using a 95% confidence level to determine if there is a difference between Jazz fans' celebration times and RSL fans' celebration times.
 ```{r echo=F}
 bothCelebrationTtest <- t.test(jazzCelebrationTimes, rslCelebrationTimes)
 bothCelebrationTtest
 ```
 
-As we can see from the previous t-test, we can say with 95% confidence that the population means are not equal. The 95% confidence interval for this t-test is (`r bothCelebrationTtest$conf.int[1]`, `r bothCelebrationTtest$conf.int[2]`). This confidence interval says that on average, Jazz fans' celebration time are shorter than RSL fans' celebration time.
+As we can see from the previous t-test, our p-value is much lower than .05. We believe this is very strong evidence that the population means are significantly different. The 95% confidence interval for this t-test is (`r bothCelebrationTtest$conf.int[1]`, `r bothCelebrationTtest$conf.int[2]`). This confidence interval says that on average, Jazz fans' celebration time are shorter than RSL fans' celebration time.
 
 ```{r}
 RatioScoresmean <- nbaScoresMean/mlsScoresMean
@@ -276,4 +280,8 @@ Finally, let's see our what these results mean. Is there a good reason RSL fans 
 
 We first found that during on average, the Utah Jazz scores between 112.3 and 115.8 points per game, an estimated mean of approximately 114 points. Next we found that Real Salt Lake (RSL) scores between  1.2 and 1.7 points with an estimated mean of 1.4 points. Shifting our focus now on the celebration times, the Jazz fans cheered on average between 4.4 and 5.8 seconds, with an estimated mean of 5.1078 seconds per point. RSL fans cheered for between 36.4 and 45.8 seconds with an estimated mean of 41.1 seconds per point. 
 
+<<<<<<< Updated upstream
 With this in mind, ***to be concluded further***
+=======
+ 
+>>>>>>> Stashed changes
