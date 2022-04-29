@@ -61,6 +61,8 @@ In other words, in a bad case (standard deviation of around 60 seconds), the wid
 
 ## One RSL Point Is Worth X Utah Jazz Points
 
+### Utah Jazz Point Analysis
+
 One RSL point is worth how many Utah Jazz points? To answer this question, we consider the total points scored by the Jazz each game in the 2019--2020 and 2020--2021 seasons. We put this data into a `.csv` file, and using the `head()` function, we can create a table to see what it looks like:
 
 ```{r echo=F}
@@ -99,6 +101,8 @@ nbaScoresTtest
 The previous t-test gives a 95% confidence interval of (`r nbaScoresTtest$conf.int[1]`, `r nbaScoresTtest$conf.int[2]`). In terms of NBA scores, this interval is quite small. Our analysis shows that we have good evidence that the population mean of Jazz scores is within these bounds.
 
 Note that the data we obtained from nba.com is biased. We only sampled from the 2020-2021 season, and we only sampled from playoff games. But for our purposes, this biased sample should be sufficient.
+
+### RSL Point Analysis
 
 Now, we consider data for RSL.  Similar to our Jazz analysis, we want to consider the total points scored by the RSL in a game.
 
@@ -154,7 +158,9 @@ Completing these computation we have arrived at a ratio of `r lowRatio` for the 
 
 ## How Long Do RSL Fans Cheer Compared to Jazz Fans
 
-Next, we will see if the cheering times between fans of RSL and the Utah Jazz are significantly differen.t First, we will take the data we collected and compute the mean values for each. Similar to what we did in the previous section for the scoring data.
+### Utah Jazz Fan Analysis
+
+Next, we will see if the cheering times between fans of RSL and the Utah Jazz are significantly different. First, we will take the data we collected and compute the mean values for each. Similar to what we did in the previous section for the scoring data.
 
 ```{r echo=F}
 # import cheering data
@@ -166,7 +172,7 @@ knitr::kable(head(jazzData),col.names=c('Opposing Team','Year','Game Time',
   kable_styling(full_width = F)
 ```
 
-The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is 'Celebration Time'. Here are some summary statistics for the celebration times:
+The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is `Celebration Time`. Here are some summary statistics for the celebration times:
 
 ```{r echo=F}
 summary(jazzCelebrationTimes)
@@ -186,25 +192,7 @@ plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration T
 hist(jazzCelebrationTimes,breaks=6,freq=FALSE,add=TRUE, col = rgb(1,.85,0,alpha=0.25))
 ```
 
-```{r echo=F}
-rslData = read.csv("rslFanData.csv")
-rslCelebrationTimes = rslData$Celebration.Time
-
-knitr::kable(head(rslData),col.names=c('Opposing Team','Year','Game Time',
-                                       'Point #','Celebration Time','Location'),align = 'c') %>%
-  kable_styling(full_width = F)
-
-```
-
-
 Here we have created a histogram of our cheering data for Utah Jazz fans. We observe this follows close enough to a normal distribution to perform a t-test. Therefore, we will conduct a t-test with a 95% confidence interval to provide good evidence to the range of the population mean.
-
-Here are some summary statistics for RSL fans' celebration times:
-
-```{r echo=F}
-summary(rslCelebrationTimes)
-```
-
 
 ```{r echo=F}
 jazzCelebrationTtest <- t.test(jazzCelebrationTimes)
@@ -212,6 +200,8 @@ jazzCelebrationTtest
 ```
 
 From this t-test we have observed with 95% confidence the population mean will be within (`r jazzCelebrationTtest$conf.int[1]`, `r jazzCelebrationTtest$conf.int[2]`) seconds. Now we will do this same analysis on the RSL fan data.
+
+### RSL Fan Analysis
 
 ```{r echo=F}
 rslData = read.csv("rslFanData.csv")
