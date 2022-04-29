@@ -26,7 +26,7 @@ If you've ever been to a MLS game you know the crowd goes crazy when their team 
 
 [nba.com](https://www.nba.com/stats/teams/boxscores/?Season=2020-21&SeasonType=Regular%20Season&CF=TEAM_NAME*E*Utah%20Jazz) provides scoring data for NBA teams. This website allows filtering of data by team, season, and the type of game (regular, playoffs, etc.). We note that there aren't many playoff games for the Jazz. With this taken into consideration, we choose to take all scoring data from playoff, play-in, and regular season games. We do so with the assumption that games scores do not depend on the type of game. This assumption is reasonable for our purposes. We are interested in the total points scored by the Utah Jazz each game.
 
-We repeat the same process of the RSL. We collect data about the total points scored each game.
+We repeat the same process of the RSL. Data is conveniently available from Google searches. We collect data about the total points scored each game.
 
 ## Cheering Data
 
@@ -100,7 +100,7 @@ nbaScoresTtest
 
 The previous t-test gives a 95% confidence interval of (`r nbaScoresTtest$conf.int[1]`, `r nbaScoresTtest$conf.int[2]`). In terms of NBA scores, this interval is quite small. Our analysis shows that we have good evidence that the population mean of Jazz scores is within these bounds.
 
-Note that the data we obtained from nba.com is biased. We only sampled from the 2020-2021 season, and we only sampled from playoff games. But for our purposes, this biased sample should be sufficient.
+Note that we only sampled from the 2019--2020 and 2020--2021 seasons. It is reasonable to say that sample from these recent seasons may not be representative of the populations. However, sports fans may care more about the current state of their favorite teams rather than what their favorite team was like many years ago. Because of this using data from recent years can actually give more relevant results---as far as sports fans are concerned.
 
 ### RSL Point Analysis
 
@@ -138,7 +138,7 @@ mlsScoresTtest
 
 Using a t-test, we find a 95% confidence interval of (`r mlsScoresTtest$conf.int[1]`, `r mlsScoresTtest$conf.int[2]`).
 
-As with the NBA case, our data for MLS scores may be biased, but it should be sufficient for our purposes. Although it seems obvious that our means are significantly different, we can do a two variable t-test to confirm this.
+As with the Jazz case, our data for RSL scores may be biased, but it should be sufficient for our purposes. Although it seems obvious that our means are significantly different, we can do a two variable t-test to confirm this.
 
 ```{r echo=F}
 nbaMlsTtest = t.test(nbaScores, mlsScores)
