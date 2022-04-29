@@ -14,7 +14,6 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
 library(kableExtra)
-colors(distinct = TRUE)
 ```
 
 # Introduction
@@ -167,7 +166,7 @@ knitr::kable(head(jazzData),col.names=c('Opposing Team','Year','Game Time',
 
 The table above shows the variables we tracked when watching Jazz games. The variable we are most interested in for this study is 'Celebration Time'. Here are some summary statistics for the celebration times:
 
-```{r}
+```{r echo=F}
 summary(jazzCelebrationTimes)
 ```
 
@@ -200,7 +199,7 @@ Here we have created a histogram of our cheering data for Utah Jazz fans. We obs
 
 Here are some summary statistics for RSL fans' celebration times:
 
-```{r}
+```{r echo=F}
 summary(rslCelebrationTimes)
 ```
 
@@ -251,6 +250,18 @@ bothCelebrationTtest
 
 As we can see from the previous t-test, we can say with 95% confidence that the population means are not equal. The 95% confidence interval for this t-test is (`r bothCelebrationTtest$conf.int[1]`, `r bothCelebrationTtest$conf.int[2]`). This confidence interval says that on average, Jazz fans' celebration time are shorter than RSL fans' celebration time.
 
+```{r}
+RatioScoresmean <- nbaScoresMean/mlsScoresMean
+Ratiocelebrationmean <- rslCelebrationMean/jazzCelebrationMean
+Ratiorsl <- rslCelebrationMean/mlsScoresMean    # Not sure if these two are valuable
+Ratiojazz <- nbaScoresMean/jazzCelebrationMean  # but I want to believe they could be
+```
+
+If we take the ratio of each team's estimated mean celebration time and compare it to each team's estimated mean score per game, we can approximate a value of each cheer. The first ratio from the scoring shows that approximately 1 point for every RSL score is equal to `r RatioScoresmean` points for every Jazz score. This estimate can not accurately be placed upon MLS vs NBA since we only used RSL and Jazz data. Comparing the cheering of RSL fans to that of Jazz fans, we are fairly confident in saying that RSL fans cheer `r Ratiocelebrationmean` seconds for every 1 second Jazz fans cheer.
+
+To compare them more to each other, we compared each team's celebration to their estimated mean score. The ratios found for the two turned out to be `r Ratiojazz` for the Jazz and `r Ratiorsl` for RSL. These ratios could give value to the consistency of cheering that actually goes on. with that...(wrap up from here)
+
+
 # Limitations
 
 As discussed earlier, the data we have gathered is probably not totally random. However, it is possible that the data we have good is somewhat good at representing the underlying populations. We tried to get random data as much as possible, but we ran into issues such as sports games being unavailable for viewing. To alleviate these problems, we gathered data from different games. Additionally, our large sample size of `r jazzCelebrationCount` for both Jazz and RSL helped make the data more representative.
@@ -259,5 +270,10 @@ There is also the matter of data. All our data come from sports games which have
 
 # Conclusion
 
+**This feels weird so feel free to delete or rephrase my wording.
 
+Finally, let's see our what these results mean. Is there a good reason RSL fans cheer longer than Jazz fans? Or could it be that RSL fans are simply more dedicated than Jazz fans?
 
+We first found that during on average, the Utah Jazz scores between 112.3 and 115.8 points per game, an estimated mean of approximately 114 points. Next we found that Real Salt Lake (RSL) scores between  1.2 and 1.7 points with an estimated mean of 1.4 points. Shifting our focus now on the celebration times, the Jazz fans cheered on average between 4.4 and 5.8 seconds, with an estimated mean of 5.1078 seconds per point. RSL fans cheered for between 36.4 and 45.8 seconds with an estimated mean of 41.1 seconds per point. 
+
+With this in mind, ***to be concluded further***
