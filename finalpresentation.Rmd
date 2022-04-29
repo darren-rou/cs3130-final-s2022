@@ -18,26 +18,19 @@ colors(distinct = TRUE)
 
 # Introduction
 
-## Introduction
-
 If you've ever been to a MLS game you know the crowd goes crazy when their team scores a goal. In comparison at an NBA game the crowd cheers, but without the same amount of enthusiasm. This study aims to look into this phenomenon and see if we can find important factors that contribute to this. The hypothesis of this study is that the amount of time a crowd cheers is dependent on the number of points scored per game. To investigate this question we will look at Utah's professional soccer and basketball teams Real Salt Lake (RSL) and the Utah Jazz. First we will collect data on the total points scored for these teams. Then, we will collect data on how long each team's respective crowd cheers when they score a point. We will then compare these values and see if there is any connection between them. 
 
-# Data Discovery
-
-## Scoring Data
+# Data Discovery: Scoring Data
 
 [nba.com](https://www.nba.com/stats/teams/boxscores/?Season=2020-21&SeasonType=Regular%20Season&CF=TEAM_NAME*E*Utah%20Jazz) provides scoring data for NBA teams. This website allows filtering of data by team, season, and the type of game (regular, playoffs, etc.). We note that there aren't many playoff games for the Jazz. With this taken into consideration, we choose to take all scoring data from playoff, play-in, and regular season games. We do so with the assumption that games scores do not depend on the type of game. This assumption is reasonable for our purposes. We are interested in the total points scored by the Utah Jazz each game.
 
 We repeat the same process of the RSL. We collect data about the total points scored each game.
 
-## Cheering Data
+# Data Discovery: Cheering Data
 
 To collect data, we watched RSL and Jazz games and observed the crowd when there was an instance of scoring. Then, using a stopwatch we timed the duration of the crowd's cheering. For the basketball games this was simple as there are no cuts in the video feed, but for soccer game this was a little harder. Since there is a delay in game play after a goal is scored in soccer the broadcasting network cuts away from the live feed and shows instant replays. These replays, however, still have live audio from the commentators and the crowd can still be heard. Thus, to gather data for the celebration time we focused on listening to the crowd during the replays and did our best to estimate when the crowd had stopped cheering. The act of timing the crowd's reaction introduces error in itself, but the added difficulty of not having a single continuous video feed made accurate data collection even more difficult. 
 
-
 # Methodology
-
-## Methodology
 
 After data collection, we were given many measurements to choose from. The first population sample we wish to evaluate will be the scores per game. In order to adequately answer our question we will first analyze how much one point in soccer is compared to one point in basketball. We will need to take the scoring data collected and compare the means of each data set. To do this we will assume these data sets follow a normal distribution and will use t-tests to construct confidence intervals to approximate the value of the population means. Since we are fairly confident in our data, yet we recognize possible biases that are present, we will be using a confidence interval of 95%. Through this t-test of 95% confidence, we can find a range for the population mean for the scores per game of RSL and of the Jazz.
 
@@ -59,9 +52,7 @@ which evaluates to `r calc`. Considering that 60 is probably much higher than th
 
 In other words, in a bad case (standard deviation of around 60 seconds), the width of our confidence interval will be about twice `r calc` or about 34 seconds. In a good case (standard deviation of about 10 seconds), the width of our confidence interval will be about twice `r calc1` or about 5.7 seconds. Considering all of this, we will decide that a sample size of 50 (or greater) with our constructed 95% confidence interval is suitable for our experiment.
 
-# Analysis
-
-## One Point In Soccer Is Worth X Points In Baseketball
+# Analysis: One Point In Soccer Is Worth X Points In Basketball
 
 We consider the total points scored by the Jazz each game in the 2019--2020 and 2020--2021 seasons. We put this data into a `.csv` file, and using the `head()` function, we can create a table to see what it looks like:
 
@@ -74,7 +65,7 @@ knitr::kable(head(nbaPreliminaryData[,0:6]),align='c',
 
 As we can see, the `Points` column corresponds to total points scored by the Jazz during a game.
 
-## Jazz Scoring
+# Jazz Scoring
 
 The population we would like to consider consists of all points scored by the Jazz in a game. Our sample (shown earlier) represents only a small portion of the population, but it is sufficient for the motivation for this study. We will now do some basic analysis on the data.
 
@@ -104,7 +95,7 @@ The previous t-test gives a 95% confidence interval of (`r nbaScoresTtest$conf.i
 
 Note that the data we obtained from nba.com is biased. We only sampled from the 2020-2021 season, and we only sampled from playoff games. But for our purposes, this biased sample should be sufficient.
 
-## RSL Scoring
+# RSL Scoring
 
 Now, we consider data for the MLS.  Similar to our NBA analysis, we want to consider the total points scored by the RSL in a game.
 
@@ -149,7 +140,7 @@ nbaMlsTtest
 
 The previous t-test suggests that NBA games have much higher scores than MLS games. The p-value is orders of magnitude lower than .05. Because of this fans may feel like points in MLS games are harder to obtain and therefore cheer longer. We will now compare the ranges of population means for Jazz games and RSL games that we derived with our t-tests. 
 
-## Scoring Analysis Overview
+# Scoring Analysis Overview
 
 The low end of the Jazz scoring mean is `r nbaScoresTtest$conf.int[1]` and the high end of the mean for RSL is `r mlsScoresTtest$conf.int[2]`. We will create a ratio by dividing these by each other. This will show us the lowest ratio between our population means. We will also compute this ratio for the high end of the interval by using the upper bound of the Jazz means and the lower bound of the RSL mean. This will give us the maximum ratio between these two means.
 
@@ -160,7 +151,7 @@ highRatio <- nbaScoresTtest$conf.int[2]/mlsScoresTtest$conf.int[1]
 
 Completing these computation we have arrived at a ratio of `r lowRatio` for the lower bound and `r highRatio` for the higher bound. This means that we have decently strong evidence that on average one point scored by RSL is at least equivalent to `r lowRatio` Jazz points and at most equivalent to `r highRatio` Jazz points. This difference is much bigger than we had anticipated. This is partially due to MLS games ending with zero points. Sometimes games end with zero points between either team. The minimum score we recorded for a Jazz game was 78 points. This number is still 13 times higher than RSL's maximum score of 6.
 
-## How Long Do RSL Fans Cheer Compared to Jazz Fans
+# How Long Do RSL Fans Cheer Compared to Jazz Fans
 
 First we will take the data we collected and compute the mean values for each. Similar to what we did in the previous section for the scoring data.
 
@@ -204,7 +195,7 @@ jazzCelebrationTtest
 
 From this t-test we have observed with 95% confidence the population mean will be within (`r jazzCelebrationTtest$conf.int[1]`, `r jazzCelebrationTtest$conf.int[2]`) seconds. Now we will do this same analysis on the RSL fan data.
 
-## How Long Do RSL Fans Cheer Compared to Jazz Fans pt. 2
+# How Long Do RSL Fans Cheer Compared to Jazz Fans pt. 2
 
 ```{r echo=F}
 rslData = read.csv("rslFanData.csv")
@@ -255,12 +246,10 @@ As we can see from the previous t-test, we can say with 95% confidence that the 
 
 # Limitations
 
-## Limitations
-
 As discussed earlier, the data we have gathered is probably not totally random. However, it is possible that the data we have good is somewhat good at representing the underlying populations. We tried to get random data as much as possible, but we ran into issues such as sports games being unavailable for viewing. To alleviate these problems, we gathered data from different games. Additionally, our large sample size of `r jazzCelebrationCount` for both Jazz and RSL helped make the data more representative.
 
 There is also the matter of data. All our data come from sports games which have taken place in the past few years. In the context of our question, it could be argued that gathering data from a wide range of years may have been better. However, it is also reasonable to say that data from recent years is more relevant to most people---sports fans may not care too much about what happened decades ago, and they may be more interested in data from recent years.
 
 # Conclusion
 
-## Conclusion
+

@@ -58,7 +58,7 @@ In other words, in a bad case (standard deviation of around 60 seconds), the wid
 
 # Analysis
 
-## One Point In Soccer Is Worth X Points In Baseketball
+## One Point In Soccer Is Worth X Points In Basketball
 
 We consider the total points scored by the Jazz each game in the 2019--2020 and 2020--2021 seasons. We put this data into a `.csv` file, and using the `head()` function, we can create a table to see what it looks like:
 

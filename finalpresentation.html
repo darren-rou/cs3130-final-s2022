@@ -752,11 +752,7 @@ Tom Coe, Joey Brignone, Darren Rou
   </p>
   <p class="date">April 29, 2022</p>
 </div>
-<div id="introduction" class="title-slide slide section level1">
-<h1>Introduction</h1>
-
-</div>
-<div id="introduction-1" class="slide section level2">
+<div id="introduction" class="slide section level1">
 <h1>Introduction</h1>
 <p>If you’ve ever been to a MLS game you know the crowd goes crazy when
 their team scores a goal. In comparison at an NBA game the crowd cheers,
@@ -771,13 +767,8 @@ collect data on how long each team’s respective crowd cheers when they
 score a point. We will then compare these values and see if there is any
 connection between them.</p>
 </div>
-
-<div id="data-discovery" class="title-slide slide section level1">
-<h1>Data Discovery</h1>
-
-</div>
-<div id="scoring-data" class="slide section level2">
-<h1>Scoring Data</h1>
+<div id="data-discovery-scoring-data" class="slide section level1">
+<h1>Data Discovery: Scoring Data</h1>
 <p><a href="https://www.nba.com/stats/teams/boxscores/?Season=2020-21&amp;SeasonType=Regular%20Season&amp;CF=TEAM_NAME*E*Utah%20Jazz">nba.com</a>
 provides scoring data for NBA teams. This website allows filtering of
 data by team, season, and the type of game (regular, playoffs, etc.). We
@@ -790,8 +781,8 @@ scored by the Utah Jazz each game.</p>
 <p>We repeat the same process of the RSL. We collect data about the
 total points scored each game.</p>
 </div>
-<div id="cheering-data" class="slide section level2">
-<h1>Cheering Data</h1>
+<div id="data-discovery-cheering-data" class="slide section level1">
+<h1>Data Discovery: Cheering Data</h1>
 <p>To collect data, we watched RSL and Jazz games and observed the crowd
 when there was an instance of scoring. Then, using a stopwatch we timed
 the duration of the crowd’s cheering. For the basketball games this was
@@ -807,12 +798,7 @@ error in itself, but the added difficulty of not having a single
 continuous video feed made accurate data collection even more
 difficult.</p>
 </div>
-
-<div id="methodology" class="title-slide slide section level1">
-<h1>Methodology</h1>
-
-</div>
-<div id="methodology-1" class="slide section level2">
+<div id="methodology" class="slide section level1">
 <h1>Methodology</h1>
 <p>After data collection, we were given many measurements to choose
 from. The first population sample we wish to evaluate will be the scores
@@ -862,13 +848,8 @@ twice 2.8284271 or about 5.7 seconds. Considering all of this, we will
 decide that a sample size of 50 (or greater) with our constructed 95%
 confidence interval is suitable for our experiment.</p>
 </div>
-
-<div id="analysis" class="title-slide slide section level1">
-<h1>Analysis</h1>
-
-</div>
-<div id="one-point-in-soccer-is-worth-x-points-in-baseketball" class="slide section level2">
-<h1>One Point In Soccer Is Worth X Points In Baseketball</h1>
+<div id="analysis-one-point-in-soccer-is-worth-x-points-in-basketball" class="slide section level1">
+<h1>Analysis: One Point In Soccer Is Worth X Points In Basketball</h1>
 <p>We consider the total points scored by the Jazz each game in the
 2019–2020 and 2020–2021 seasons. We put this data into a
 <code>.csv</code> file, and using the <code>head()</code> function, we
@@ -1022,7 +1003,7 @@ W
 <p>As we can see, the <code>Points</code> column corresponds to total
 points scored by the Jazz during a game.</p>
 </div>
-<div id="jazz-scoring" class="slide section level2">
+<div id="jazz-scoring" class="slide section level1">
 <h1>Jazz Scoring</h1>
 <p>The population we would like to consider consists of all points
 scored by the Jazz in a game. Our sample (shown earlier) represents only
@@ -1057,7 +1038,7 @@ sampled from the 2020-2021 season, and we only sampled from playoff
 games. But for our purposes, this biased sample should be
 sufficient.</p>
 </div>
-<div id="rsl-scoring" class="slide section level2">
+<div id="rsl-scoring" class="slide section level1">
 <h1>RSL Scoring</h1>
 <p>Now, we consider data for the MLS. Similar to our NBA analysis, we
 want to consider the total points scored by the RSL in a game.</p>
@@ -1191,7 +1172,7 @@ obtain and therefore cheer longer. We will now compare the ranges of
 population means for Jazz games and RSL games that we derived with our
 t-tests.</p>
 </div>
-<div id="scoring-analysis-overview" class="slide section level2">
+<div id="scoring-analysis-overview" class="slide section level1">
 <h1>Scoring Analysis Overview</h1>
 <p>The low end of the Jazz scoring mean is 112.2563898 and the high end
 of the mean for RSL is 1.6826519. We will create a ratio by dividing
@@ -1212,7 +1193,7 @@ Sometimes games end with zero points between either team. The minimum
 score we recorded for a Jazz game was 78 points. This number is still 13
 times higher than RSL’s maximum score of 6.</p>
 </div>
-<div id="how-long-do-rsl-fans-cheer-compared-to-jazz-fans" class="slide section level2">
+<div id="how-long-do-rsl-fans-cheer-compared-to-jazz-fans" class="slide section level1">
 <h1>How Long Do RSL Fans Cheer Compared to Jazz Fans</h1>
 <p>First we will take the data we collected and compute the mean values
 for each. Similar to what we did in the previous section for the scoring
@@ -1392,7 +1373,7 @@ population mean.</p>
 mean will be within (4.4155696, 5.8000304) seconds. Now we will do this
 same analysis on the RSL fan data.</p>
 </div>
-<div id="how-long-do-rsl-fans-cheer-compared-to-jazz-fans-pt.-2" class="slide section level2">
+<div id="how-long-do-rsl-fans-cheer-compared-to-jazz-fans-pt.-2" class="slide section level1">
 <h1>How Long Do RSL Fans Cheer Compared to Jazz Fans pt. 2</h1>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -1590,12 +1571,7 @@ interval for this t-test is (-40.7576978, -31.2843022). This confidence
 interval says that on average, Jazz fans’ celebration time are shorter
 than RSL fans’ celebration time.</p>
 </div>
-
-<div id="limitations" class="title-slide slide section level1">
-<h1>Limitations</h1>
-
-</div>
-<div id="limitations-1" class="slide section level2">
+<div id="limitations" class="slide section level1">
 <h1>Limitations</h1>
 <p>As discussed earlier, the data we have gathered is probably not
 totally random. However, it is possible that the data we have good is
@@ -1613,12 +1589,7 @@ data from recent years is more relevant to most people—sports fans may
 not care too much about what happened decades ago, and they may be more
 interested in data from recent years.</p>
 </div>
-
-<div id="conclusion" class="title-slide slide section level1">
-<h1>Conclusion</h1>
-
-</div>
-<div id="conclusion-1" class="slide section level2">
+<div id="conclusion" class="slide section level1">
 <h1>Conclusion</h1>
 </div>
 
