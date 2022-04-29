@@ -249,9 +249,9 @@ highRatioCheer <- rslCelebrationTtest$conf.int[2]/jazzCelebrationTtest$conf.int[
 
 After these calculation we arrived at a ratio of `r lowRatioCheer` for the lower bound and `r highRatioCheer` for the higher bound. This means that we have decently strong evidence that on average RSL fans cheer `r lowRatioCheer` times longer and at most `r highRatioCheer` times longer when RSL scores a point.
 
-## Interesting Variables
+## Other Interesting Variables
 
-### Investigating Point Number Coorelations
+### Investigating Point Number Correlations
 
 From our analysis we have asked ourselves if the point number is directly correlated with the amount of cheering, meaning do fans cheer longer for points towards the end of the game. To investigate further we compared the point number to the cheering time of both Jazz and RSL fans.
 
