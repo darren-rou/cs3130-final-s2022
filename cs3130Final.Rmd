@@ -188,7 +188,7 @@ jazzCelebrationSd = sd(jazzCelebrationTimes)
 jazzCelebrationBreaks = c(min(jazzCelebrationTimes):max(jazzCelebrationTimes))
 jazzCelebrationRange <- c(0:12)
 jazzCelebrationNormal <- dnorm(jazzCelebrationRange,mean=jazzCelebrationMean,sd=jazzCelebrationSd)
-plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration Time (Jazz) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density', col = rgb(0,0,.502))
+plot(jazzCelebrationRange,jazzCelebrationNormal,main="Histogram of Celebration Time (Jazz) and Normal Curve",xlab="Total Time Fans Cheered After a Score, (s)",ylab = 'Density', col = rgb(0,0,.502))
 hist(jazzCelebrationTimes,breaks=6,freq=FALSE,add=TRUE, col = rgb(1,.85,0,alpha=0.25))
 ```
 
@@ -222,7 +222,7 @@ rslCelebrationSd = sd(rslCelebrationTimes)
 rslCelebrationBreaks = c(min(rslCelebrationTimes):max(rslCelebrationTimes))
 rslCelebrationRange <- c(10:100)
 rslCelebrationNormal <- dnorm(rslCelebrationRange,mean=rslCelebrationMean,sd=rslCelebrationSd)
-plot(rslCelebrationRange,rslCelebrationNormal,main="Histogram of Celebration Time (RSL) and Normal Curve",xlab="Total Time Fans Cheered After a Score",ylab = 'Density', col = 'red')
+plot(rslCelebrationRange,rslCelebrationNormal,main="Histogram of Celebration Time (RSL) and Normal Curve",xlab="Total Time Fans Cheered After a Score, (s)",ylab = 'Density', col = 'red')
 hist(rslCelebrationTimes,freq=FALSE,add=TRUE, col = rgb(0,.278,.671,alpha=0.25))
 ```
 
@@ -253,7 +253,7 @@ After these calculation we arrived at a ratio of `r lowRatioCheer` for the lower
 
 ### Investigating Point Number Correlations
 
-From our analysis we have asked ourselves if the point number is directly correlated with the amount of cheering, meaning do fans cheer longer for points towards the end of the game. To investigate further we compared the point number to the cheering time of both Jazz and RSL fans.
+From our analysis we have asked ourselves if the point number is directly correlated with the amount of cheering. Meaning do fans cheer longer for points towards the end of the game. To investigate further we compared the point number to the cheering time of both Jazz and RSL fans.
 
 ```{r}
 pairs(jazzData[,4:5],main = "Jazz Point # vs Celebration Time")
@@ -273,7 +273,7 @@ Above we performed the same analysis for the RSL fan data. Here we see slightly 
 
 Another factor that seemed to play a significant roll was whether the team was playing a home versus away game. This would make sense as the team has more local support at a home game and therefore the crowd might cheer longer.
 
-```{r}
+```{r echo=F}
 jazzHvA <- jazzData %>% group_by(location) %>% summarise(mean(Celebration.Time))
 knitr::kable(jazzHvA,col.names=c('Location','Celebration Time, (s)'),align='c') %>%
   kable_styling(full_width = T)
@@ -283,7 +283,7 @@ Above are the calculated means for home games and away games. We can see from th
 
 Similarly for RSL:
 
-```{r}
+```{r echo=F}
 rslHvA <- rslData %>% group_by(location) %>% summarise(mean(Celebration.Time))
 knitr::kable(rslHvA,col.names=c('Location','Celebration Time, (s)'),align='c') %>%
   kable_styling(full_width = T)
